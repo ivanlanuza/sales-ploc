@@ -1,5 +1,7 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import prisma from "lib/prisma";
+import { getUserAuth } from "lib/data.js";
 
 export default NextAuth({
   providers: [
@@ -17,6 +19,11 @@ export default NextAuth({
 
   callbacks: {
     async session({ session }) {
+      let userauth = await getUserAuth(session.user.email, prisma);
+      if (userauth.length > 0) {
+        userauth = JSON.parse(JSON.stringify(userauth));
+        session.user.auth = userauth[0].auth;
+      }
       return session;
     },
   },

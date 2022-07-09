@@ -9,3 +9,116 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id        String    @id @default(cuid())
+  email     String?
+  auth      String?
+  createdAt DateTime  @default(now())
+  isActive  Boolean   @default(true)
+  Company   Company[]
+  Action    Action[]
+}
+
+model Status {
+  id                 String               @id @default(cuid())
+  code               String?
+  name               String?
+  description        String?
+  ActionTypeOnStatus ActionTypeOnStatus[]
+  Company            Company[]
+}
+
+model ActionType {
+  id                 String               @id @default(cuid())
+  code               String?
+  description        String?
+  Fields             Field[]
+  ActionTypeOnStatus ActionTypeOnStatus[]
+  Action             Action[]
+}
+
+model Field {
+  id           String       @id @default(cuid())
+  code         String?
+  name         String?
+  description  String?
+  options      String?
+  actiontypeId String
+  actiontype   ActionType   @relation(fields: [actiontypeId], references: [id], onDelete: Cascade)
+  fieldType    String
+  ActionData   ActionData[]
+  Action       Action?      @relation(fields: [actionId], references: [id])
+  actionId     String?
+}
+
+model ActionTypeOnStatus {
+  id         String     @id @default(cuid())
+  actionId   String
+  statusId   String
+  actiontype ActionType @relation(fields: [actionId], references: [id], onDelete: Cascade)
+  status     Status     @relation(fields: [statusId], references: [id], onDelete: Cascade)
+}
+
+model Company {
+  id          String        @id @default(cuid())
+  name        String?
+  other_name  String?
+  isActive    Boolean       @default(true)
+  statusId    String
+  status      Status        @relation(fields: [statusId], references: [id], onDelete: Cascade)
+  segmentId   String
+  segment     Segment       @relation(fields: [segmentId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sourceId    String
+  source      Source        @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  ContactInfo ContactInfo[]
+  Action      Action[]
+}
+
+model Segment {
+  id      String    @id @default(cuid())
+  code    String?
+  name    String?
+  Company Company[]
+}
+
+model Source {
+  id      String    @id @default(cuid())
+  code    String?
+  name    String?
+  Company Company[]
+}
+
+model ContactInfo {
+  id        String  @id @default(cuid())
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  name      String?
+  mobile    String?
+  email     String?
+  isPrimary Boolean @default(false)
+}
+
+model Action {
+  id           String       @id @default(cuid())
+  companyId    String
+  company      Company      @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  createdAt    DateTime     @default(now())
+  actiontypeId String
+  actiontype   ActionType   @relation(fields: [actiontypeId], references: [id], onDelete: Cascade)
+  createdBy    String
+  user         User         @relation(fields: [createdBy], references: [id], onDelete: Cascade)
+  ActionData   ActionData[]
+  Field        Field[]
+}
+
+model ActionData {
+  id       String @id @default(cuid())
+  actionId String
+  action   Action @relation(fields: [actionId], references: [id], onDelete: Cascade)
+  fieldId  String
+  field    Field  @relation(fields: [fieldId], references: [id], onDelete: Cascade)
+  value    String
+}
