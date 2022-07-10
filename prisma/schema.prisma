@@ -11,12 +11,11 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(cuid())
+  id        String   @id @default(cuid())
   email     String?
   auth      String?
-  createdAt DateTime  @default(now())
-  isActive  Boolean   @default(true)
-  Company   Company[]
+  createdAt DateTime @default(now())
+  isActive  Boolean  @default(true)
   Action    Action[]
 }
 
@@ -61,33 +60,45 @@ model ActionTypeOnStatus {
 }
 
 model Company {
-  id          String        @id @default(cuid())
-  name        String?
-  other_name  String?
-  isActive    Boolean       @default(true)
-  statusId    String
-  status      Status        @relation(fields: [statusId], references: [id], onDelete: Cascade)
-  segmentId   String
-  segment     Segment       @relation(fields: [segmentId], references: [id], onDelete: Cascade)
-  userId      String
-  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  sourceId    String
-  source      Source        @relation(fields: [sourceId], references: [id], onDelete: Cascade)
-  ContactInfo ContactInfo[]
-  Action      Action[]
+  id             String        @id @default(cuid())
+  name           String?
+  other_name     String?
+  isActive       Boolean       @default(true)
+  statusId       String
+  status         Status        @relation(fields: [statusId], references: [id], onDelete: Cascade)
+  segmentId      String
+  segment        Segment       @relation(fields: [segmentId], references: [id], onDelete: Cascade)
+  sourceId       String
+  source         Source        @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  businesstypeId String
+  businesstype   BusinessType  @relation(fields: [businesstypeId], references: [id], onDelete: Cascade)
+  ContactInfo    ContactInfo[]
+  Action         Action[]
+  createdAt      DateTime      @default(now())
 }
 
 model Segment {
-  id      String    @id @default(cuid())
-  code    String?
-  name    String?
-  Company Company[]
+  id           String         @id @default(cuid())
+  code         String?
+  name         String?
+  BusinessType BusinessType[]
+  Company      Company[]
 }
 
 model Source {
   id      String    @id @default(cuid())
   code    String?
   name    String?
+  Company Company[]
+}
+
+model BusinessType {
+  id        String  @id @default(cuid())
+  code      String?
+  name      String?
+  segmentId String
+  segment   Segment @relation(fields: [segmentId], references: [id], onDelete: Cascade)
+
   Company Company[]
 }
 

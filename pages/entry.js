@@ -1,7 +1,7 @@
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 
-export default function entry(/*{ userauth }*/) {
+export default function entry() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
