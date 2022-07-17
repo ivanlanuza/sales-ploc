@@ -109,6 +109,8 @@ model ContactInfo {
   name      String?
   mobile    String?
   email     String?
+  role      String?
+  notes     String?
   isPrimary Boolean @default(false)
 }
 

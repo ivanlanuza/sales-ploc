@@ -18,7 +18,6 @@ export default function entry() {
     return (
       <div className="text-center">
         <HeaderBar email={session.user.email} image={session.user.image} />
-        <div>Hello!</div>
       </div>
     );
   }

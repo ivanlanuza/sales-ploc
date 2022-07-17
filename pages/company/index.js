@@ -31,31 +31,33 @@ export default function CompanyPage({ segment, source, bt }) {
 
   if (status === "authenticated" && session.user.auth) {
     return (
-      <div>
-        <HeaderBar email={session.user.email} image={session.user.image} />
-        <div className="flex flex-col justify-center items-center mt-8">
-          <div className="block p-6 rounded-lg shadow-lg bg-white max-w-lg xl:w-3/5 font-mono">
+      <div className="w-full">
+        <div>
+          <HeaderBar email={session.user.email} image={session.user.image} />
+        </div>
+        <div className="flex flex-col justify-center items-center mt-6">
+          <div className="block p-6 rounded-lg shadow-lg bg-white max-w-lg xl:w-3/5 font-mono pb-0">
             <form>
-              <div className="form-group mb-6">
-                <span className="text-sm text-gray-400 font-light ">
+              <div className="form-group mb-4">
+                <span className="text-xs text-gray-400 font-light ">
                   Company Name
                 </span>
                 <input
                   type="text"
                   className="form-control block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  w-full
+                  px-4
+                  py-3
+                  text-sm
+                  font-normal
+                  text-gray-700
+                  bg-white bg-clip-padding
+                  border border-solid border-gray-300
+                  rounded
+                  transition
+                  ease-in-out
+                  m-0
+                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="companyname"
                   placeholder="Enter Company Name"
                   value={companyName}
@@ -66,26 +68,26 @@ export default function CompanyPage({ segment, source, bt }) {
                   }}
                 />
               </div>
-              <div className="form-group mb-6">
-                <span className="text-sm text-gray-400 font-light ">
+              <div className="form-group mb-4">
+                <span className="text-xs text-gray-400 font-light ">
                   L.E. Name
                 </span>
                 <input
                   type="text"
                   className="form-control block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  w-full
+                  px-4
+                  py-3
+                  text-sm
+                  font-normal
+                  text-gray-700
+                  bg-white bg-clip-padding
+                  border border-solid border-gray-300
+                  rounded
+                  transition
+                  ease-in-out
+                  m-0
+                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="othername"
                   placeholder="Enter legal entity name"
                   value={otherName}
@@ -96,27 +98,27 @@ export default function CompanyPage({ segment, source, bt }) {
                   }}
                 />
               </div>
-              <div className="justify-center p-0 m-0">
-                <span className="text-sm text-gray-400 font-light ">
+              <div className="justify-center p-0 m-0 mb-4">
+                <span className="text-xs text-gray-400 font-light ">
                   Segment
                 </span>
-                <div className="mb-6 xl:w-100">
+                <div className="mb-4 xl:w-100">
                   <select
                     className="form-select appearance-none
-      block
-      w-full
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-      bg-white bg-clip-padding bg-no-repeat
-      border border-solid border-gray-300
-      rounded
-      transition
-      ease-in-out
-      m-0
-      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    block
+                    w-full
+                    px-4
+                    py-3
+                    text-sm
+                    font-normal
+                    text-gray-700
+                    bg-white bg-clip-padding bg-no-repeat
+                    border border-solid border-gray-300
+                    rounded
+                    transition
+                    ease-in-out
+                    m-0
+                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     aria-label="Default select example"
                     value={segmentSelect}
                     onChange={(e) => {
@@ -140,27 +142,27 @@ export default function CompanyPage({ segment, source, bt }) {
                   </select>
                 </div>
               </div>
-              <div className="justify-center p-0 m-0">
-                <span className="text-sm text-gray-400 font-light ">
+              <div className="justify-center p-0 m-0 mb-4">
+                <span className="text-xs text-gray-400 font-light ">
                   Business Type
                 </span>
-                <div className="mb-6 xl:w-100">
+                <div className="mb-4 xl:w-100">
                   <select
                     className="form-select appearance-none
-      block
-      w-full
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-      bg-white bg-clip-padding bg-no-repeat
-      border border-solid border-gray-300
-      rounded
-      transition
-      ease-in-out
-      m-0
-      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    block
+                    w-full
+                    px-4
+                    py-3
+                    text-sm
+                    font-normal
+                    text-gray-700
+                    bg-white bg-clip-padding bg-no-repeat
+                    border border-solid border-gray-300
+                    rounded
+                    transition
+                    ease-in-out
+                    m-0
+                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     aria-label="Default select example"
                     value={businesstypeSelect}
                     onChange={(e) => {
@@ -181,27 +183,27 @@ export default function CompanyPage({ segment, source, bt }) {
                   </select>
                 </div>
               </div>
-              <div className="justify-center p-0 m-0">
-                <span className="text-sm text-gray-400 font-light ">
+              <div className="justify-center p-0 m-0 mb-4">
+                <span className="text-xs text-gray-400 font-light ">
                   Source
                 </span>
                 <div className="mb-6 xl:w-100">
                   <select
                     className="form-select appearance-none
-      block
-      w-full
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-      bg-white bg-clip-padding bg-no-repeat
-      border border-solid border-gray-300
-      rounded
-      transition
-      ease-in-out
-      m-0
-      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    block
+                    w-full
+                    px-4
+                    py-3
+                    text-sm
+                    font-normal
+                    text-gray-700
+                    bg-white bg-clip-padding bg-no-repeat
+                    border border-solid border-gray-300
+                    rounded
+                    transition
+                    ease-in-out
+                    m-0
+                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     aria-label="Default select example"
                     value={sourceSelect}
                     onChange={(e) => {
@@ -226,17 +228,17 @@ export default function CompanyPage({ segment, source, bt }) {
       w-full
       px-6
       py-2.5
-      bg-blue-600
-      text-white
+      text-white bg-indigo-600
       font-medium
-      text-xs
+      text-lg
       leading-tight
       uppercase
       rounded
       shadow-md
-      hover:bg-blue-700 hover:shadow-lg
-      focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-      active:bg-blue-800 active:shadow-lg
+      mb-8
+      hover:bg-indigo-700 hover:shadow-lg
+      focus:bg-indigo-700 focus:shadow-lg focus:outline-none focus:ring-0
+      active:bg-indigo-800 active:shadow-lg
       transition
       duration-150
       ease-in-out"
@@ -252,7 +254,7 @@ export default function CompanyPage({ segment, source, bt }) {
 
             {validationerror && (
               <div
-                className="bg-red-100 rounded-lg py-5 px-6 mb-3 text-base text-red-700 inline-flex items-center w-full mt-4"
+                className="bg-red-100 rounded-lg py-5 px-6 mb-3 text-base text-red-700 inline-flex items-center w-full mt-0"
                 role="alert"
               >
                 <svg
@@ -276,7 +278,7 @@ export default function CompanyPage({ segment, source, bt }) {
 
             {successflag && (
               <div
-                className="mt-4 bg-green-100 rounded-lg py-5 px-6 mb-3 text-base text-green-700 inline-flex items-center w-full"
+                className="mt-0 bg-green-100 rounded-lg py-5 px-6 mb-3 text-base text-green-700 inline-flex items-center w-full"
                 role="alert"
               >
                 <svg
