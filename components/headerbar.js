@@ -20,7 +20,7 @@ const companies = [
   {
     name: "New Company",
     description: "Add a new company into the database.",
-    href: "/company",
+    href: "/company/entry",
     icon: BriefcaseIcon,
   },
   {
@@ -37,7 +37,7 @@ function classNames(...classes) {
 
 export default function HeaderBar({ email, image }) {
   return (
-    <Popover className="relative bg-white w-full font-mono">
+    <Popover className="relative bg-white w-full ">
       <div className="mx-auto w-full">
         <div className="m-0 flex justify-between items-center border-b-2 border-gray-100 py-4 md:justify-start md:space-x-10">
           <div className="-mr-2 -my-2 md:hidden">
@@ -92,10 +92,11 @@ export default function HeaderBar({ email, image }) {
                                 aria-hidden="true"
                               />
                               <div className="ml-4">
-                                <p className="text-base font-bold text-gray-900 float-left">
+                                <p className="block text-base font-bold text-gray-900 text-left">
                                   {item.name}
                                 </p>
-                                <p className="mt-1 text-sm text-gray-500 float-left">
+
+                                <p className="block mt-1 text-sm text-gray-500 text-left">
                                   {item.description}
                                 </p>
                               </div>

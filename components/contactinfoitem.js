@@ -1,10 +1,22 @@
-const ContactInfo = ({ contactinfo }) => {
+import Link from "next/link";
+
+const ContactInfo = ({ contactinfo, companyid }) => {
   return (
-    <tr className="bg-white border-t dark:bg-gray-800 dark:border-gray-700">
-      <td className="px-6 py-4 text-sm">{contactinfo.name}</td>
-      <td className="px-6 py-4 text-sm">{contactinfo.role}</td>
-      <td className="px-6 py-4 text-sm">{contactinfo.mobile}</td>
-      <td className="px-6 py-4 text-sm">{contactinfo.email}</td>
+    <tr className="bg-white border-t dark:bg-gray-800 dark:border-gray-700 font-mono">
+      <td className="px-6 py-4 text-xs">
+        <Link
+          href={
+            `/company/` + companyid + `/contact/` + contactinfo.id + `/edit`
+          }
+        >
+          <span className="text-purple-600 hover:text-purple-800 text-sm font-bold transition duration-300 ease-in-out">
+            {contactinfo.name}
+          </span>
+        </Link>
+      </td>
+      <td className="px-6 py-4 text-xs">{contactinfo.role}</td>
+      <td className="px-6 py-4 text-xs">{contactinfo.mobile}</td>
+      <td className="px-6 py-4 text-xs">{contactinfo.email}</td>
     </tr>
   );
 };

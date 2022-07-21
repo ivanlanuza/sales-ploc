@@ -103,15 +103,17 @@ model BusinessType {
 }
 
 model ContactInfo {
-  id        String  @id @default(cuid())
-  companyId String
-  company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
-  name      String?
-  mobile    String?
-  email     String?
-  role      String?
-  notes     String?
-  isPrimary Boolean @default(false)
+  id         String  @id @default(cuid())
+  companyId  String
+  company    Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  name       String?
+  mobile     String?
+  email      String?
+  role       String?
+  notes      String?
+  isPrimary  Boolean @default(false)
+  isDeleted  Boolean @default(false)
+  isObsolete Boolean @default(false)
 }
 
 model Action {

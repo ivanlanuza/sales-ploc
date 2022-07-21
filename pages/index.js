@@ -63,7 +63,7 @@ export default function Home() {
                   iRipple Group
                 </p>
               </h1>
-              <p className="mt-4 mb-8 tracking-tight font-mono text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+              <p className="mt-4 mb-8 tracking-tight text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                 Leverage the true power of P.L.O.C. funnel by logging client
                 interactions and getting recommended next best actions.
               </p>
@@ -71,7 +71,7 @@ export default function Home() {
                 <div className="rounded-md shadow">
                   <button
                     onClick={() => signIn("google")}
-                    className="w-full font-mono flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
+                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
                   >
                     Log In with Google
                   </button>

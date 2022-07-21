@@ -1,16 +1,26 @@
+import prisma from "lib/prisma";
+
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import HeaderBar from "components/headerbar";
 import { getCompany } from "lib/data";
 import { getSession } from "next-auth/react";
-import prisma from "lib/prisma";
-import Link from "next/link";
-import { TrashIcon } from "@heroicons/react/outline";
+import { useState, useRef } from "react";
+
 import ContactInfoList from "components/contactinfo";
+import HeaderBar from "components/headerbar";
+import ButtonPrimary from "components/core/ButtonPrimary";
+import ButtonDelete from "components/core/ButtonDelete";
+import ButtonCancel from "components/core/ButtonCancel";
+import CardHeader from "components/core/CardHeader";
+import InputDataLabel from "components/core/InputDataLabel";
+import SimpleModal from "components/core/SimpleModal";
 
 export default function entry({ company }) {
   const { data: session, status } = useSession();
   const router = useRouter();
+
+  const [open, setOpen] = useState(false);
+  const cancelButtonRef = useRef(null);
 
   if (!session) {
     return <div className="text-center pt-8">Not logged in</div>;
@@ -25,137 +35,41 @@ export default function entry({ company }) {
       <div className="text-center">
         <HeaderBar email={session.user.email} image={session.user.image} />
         <div className="grid grid-cols-8 gap-4">
-          <div className="bg-white shadow col-span-3 overflow-hidden sm:rounded-lg font-mono float-left m-8 text-left">
-            <div className="px-4 py-5 sm:px-6">
-              <h3 className="text-lg leading-6 font-bold text-gray-900">
-                Company Information
-              </h3>
-              <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                View Company Information
-              </p>
-            </div>
+          <div className="bg-white shadow col-span-3 overflow-hidden sm:rounded-lg float-left m-8 text-left">
+            <CardHeader
+              title="Company Information"
+              subtitle="View Company Information"
+            />
             <div className="border-t border-gray-200">
-              <dl>
-                <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-medium text-gray-500">
-                    Company name
-                  </dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {company.name}
-                  </dd>
-                </div>
-                <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-medium text-gray-500">
-                    Legal Entity Name
-                  </dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {company.other_name}
-                  </dd>
-                </div>
-                <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-medium text-gray-500">Segment</dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {company.segment.name}
-                  </dd>
-                </div>
-                <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-medium text-gray-500">
-                    Business Type
-                  </dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {company.businesstype.name}
-                  </dd>
-                </div>
-                <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-medium text-gray-500">Source</dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {company.source.name}
-                  </dd>
-                </div>
-                <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b border-gray-200">
-                  <dt className="text-sm font-medium text-gray-500">Status</dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {company.status.name}
-                  </dd>
-                </div>
-              </dl>
+              <InputDataLabel label="Company Name" value={company.name} />
+              <InputDataLabel
+                label="Legal Entity Name"
+                value={company.other_name}
+              />
+              <InputDataLabel label="Segment" value={company.segment.name} />
+              <InputDataLabel
+                label="Business Type"
+                value={company.businesstype.name}
+              />
+              <InputDataLabel label="Source" value={company.source.name} />
+              <InputDataLabel label="Status" value={company.status.name} />
             </div>
             <div className="p-4">
-              <Link href={`/company/` + company.id + `/edit`}>
-                <button
-                  type="submit"
-                  className="  
-                px-6
-                py-2
-                h-12
-                text-white bg-indigo-600
-                font-medium
-                text-sm
-                leading-tight
-                uppercase
-                rounded
-                shadow-md
-                float-right
-                mb-4
-                hover:bg-indigo-700 hover:shadow-lg
-                focus:bg-indigo-700 focus:shadow-lg focus:outline-none focus:ring-0
-                active:bg-indigo-800 active:shadow-lg
-                transition
-                duration-150
-                ease-in-out"
-                  onClick={(e) => {
-                    //e.preventDefault();
-                  }}
-                >
-                  Edit Company
-                </button>
-              </Link>
-
-              <button
-                type="submit"
-                className="  
-                px-6
-                py-2
-                h-12
-                text-white bg-red-900
-                font-medium
-                text-sm
-                leading-tight
-                uppercase
-                rounded
-                shadow-md
-                float-right
-                mb-4
-                mr-2
-                hover:bg-red-700 hover:shadow-lg
-                focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0
-                active:bg-red`-800 active:shadow-lg
-                transition
-                duration-150
-                ease-in-out"
+              <ButtonPrimary
+                title="Edit Company"
+                href={`/company/` + company.id + `/edit`}
+              />
+              <ButtonDelete
                 onClick={(e) => {
                   e.preventDefault();
-                  handleSubmit();
+                  setOpen(true);
                 }}
-              >
-                <TrashIcon className="h-6 w-6 text-white" />
-              </button>
-              <Link href="/company/list" className="flex ">
-                <span className="float-left mr-8 text-sm mt-2 p-1 rounded-sm text-indigo-500 hover:font-bold">
-                  back to list
-                </span>
-              </Link>
+              />
+              <ButtonCancel href="/company/list" title="back to list" />
             </div>
           </div>
-          <div className="bg-white shadow col-span-5 overflow-hidden sm:rounded-lg font-mono float-left m-8 text-left">
-            <div className="px-4 py-5 sm:px-6">
-              <h3 className="text-lg leading-6 font-bold text-gray-900">
-                List of Contacts
-              </h3>
-              <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                View Contacts for this company
-              </p>
-            </div>
+          <div className="bg-white shadow col-span-5 overflow-hidden sm:rounded-lg float-left m-8 text-left ">
+            <CardHeader title="Contact List" subtitle="View List of Contacts" />
             <div className="border-t border-gray-200">
               {company.ContactInfo.length !== 0 && (
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -176,18 +90,43 @@ export default function entry({ company }) {
                     </tr>
                   </thead>
                   <tbody>
-                    <ContactInfoList contactinfolist={company.ContactInfo} />
+                    <ContactInfoList
+                      contactinfolist={company.ContactInfo}
+                      companyid={company.id}
+                    />
                   </tbody>
                 </table>
               )}
             </div>
+            <div className="p-4 border-t border-gray-200">
+              <ButtonPrimary
+                title="Add Contact"
+                href={`/company/` + company.id + `/contact/entry`}
+                onClick={(e) => {
+                  //e.preventDefault();
+                }}
+              />
+            </div>
           </div>
         </div>
+        <SimpleModal
+          dialogtitle="Delete Company"
+          longtext="Are you sure you want to delete this company?"
+          buttontitle="Delete Company"
+          onClickProceed={() => {
+            setOpen(false);
+            handleDelete();
+          }}
+          onClickCancel={() => setOpen(false)}
+          ref={cancelButtonRef}
+          onClose={setOpen}
+          show={open}
+        />
       </div>
     );
   }
 
-  async function handleSubmit() {
+  async function handleDelete() {
     await fetch("/api/deletecompany", {
       body: JSON.stringify({
         id: company.id,
