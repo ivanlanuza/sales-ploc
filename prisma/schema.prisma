@@ -32,6 +32,7 @@ model ActionType {
   id                 String               @id @default(cuid())
   code               String?
   description        String?
+  visibleSequence    String?
   Fields             Field[]
   ActionTypeOnStatus ActionTypeOnStatus[]
   Action             Action[]
@@ -44,6 +45,7 @@ model Field {
   description  String?
   options      String?
   actiontypeId String
+  value        String?      @default("")
   actiontype   ActionType   @relation(fields: [actiontypeId], references: [id], onDelete: Cascade)
   fieldType    String
   ActionData   ActionData[]
@@ -52,11 +54,12 @@ model Field {
 }
 
 model ActionTypeOnStatus {
-  id         String     @id @default(cuid())
-  actionId   String
-  statusId   String
-  actiontype ActionType @relation(fields: [actionId], references: [id], onDelete: Cascade)
-  status     Status     @relation(fields: [statusId], references: [id], onDelete: Cascade)
+  id           String     @id @default(cuid())
+  actionId     String
+  statusId     String
+  nextStatusId String?
+  actiontype   ActionType @relation(fields: [actionId], references: [id], onDelete: Cascade)
+  status       Status     @relation(fields: [statusId], references: [id], onDelete: Cascade)
 }
 
 model Company {
@@ -125,6 +128,7 @@ model Action {
   actiontype   ActionType   @relation(fields: [actiontypeId], references: [id], onDelete: Cascade)
   createdBy    String
   user         User         @relation(fields: [createdBy], references: [id], onDelete: Cascade)
+  businessDate DateTime     @default(now())
   ActionData   ActionData[]
   Field        Field[]
 }

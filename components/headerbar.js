@@ -14,7 +14,7 @@ const companies = [
   {
     name: "New Interaction",
     description: "Log an interaction with a company",
-    href: "/entry",
+    href: "/interaction/create",
     icon: ChatAlt2Icon,
   },
   {

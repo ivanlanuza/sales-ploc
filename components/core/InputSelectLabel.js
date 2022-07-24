@@ -25,7 +25,7 @@ const InputSelectLabel = ({ label, value, onChange, data, placeholder }) => (
         value={value}
         onChange={onChange}
       >
-        {placeholder && <option>{placeholder}</option>}
+        {placeholder && <option value="">{placeholder}</option>}
         {data.map((dataitem) => (
           <option key={dataitem.id} value={dataitem.id}>
             {dataitem.name}

@@ -23,6 +23,7 @@ export default NextAuth({
       if (userauth.length > 0) {
         userauth = JSON.parse(JSON.stringify(userauth));
         session.user.auth = userauth[0].auth;
+        session.user.id = userauth[0].id;
       }
       return session;
     },
