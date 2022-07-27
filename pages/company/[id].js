@@ -2,7 +2,7 @@ import prisma from "lib/prisma";
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { getCompany } from "lib/data";
+import { getCompany, getInteractions } from "lib/data";
 import { getSession } from "next-auth/react";
 import { useState, useRef } from "react";
 
@@ -14,8 +14,9 @@ import ButtonCancel from "components/core/ButtonCancel";
 import CardHeader from "components/core/CardHeader";
 import InputDataLabel from "components/core/InputDataLabel";
 import SimpleModal from "components/core/SimpleModal";
+import InteractionTable from "components/interactiontable";
 
-export default function entry({ company }) {
+export default function entry({ company, interactions }) {
   const { data: session, status } = useSession();
   const router = useRouter();
 
@@ -42,10 +43,7 @@ export default function entry({ company }) {
             />
             <div className="border-t border-gray-200">
               <InputDataLabel label="Company Name" value={company.name} />
-              <InputDataLabel
-                label="Legal Entity Name"
-                value={company.other_name}
-              />
+              <InputDataLabel label="L.E. Name" value={company.other_name} />
               <InputDataLabel label="Segment" value={company.segment.name} />
               <InputDataLabel
                 label="Business Type"
@@ -109,16 +107,21 @@ export default function entry({ company }) {
             </div>
           </div>
         </div>
+        <div className="grid grid-cols-8 gap-4">
+          <div className="bg-white shadow col-span-8 overflow-hidden sm:rounded-lg float-left m-8 text-left ">
+            <InteractionTable interactions={interactions} />
+          </div>
+        </div>
         <SimpleModal
           dialogtitle="Delete Company"
-          longtext="Are you sure you want to delete this company?"
+          longtext="Deleting this company will also delete all accompanying data (interactions, contacts, etc).  Are you sure you want to delete this company?"
           buttontitle="Delete Company"
           onClickProceed={() => {
             setOpen(false);
             handleDelete();
           }}
           onClickCancel={() => setOpen(false)}
-          ref={cancelButtonRef}
+          //ref={cancelButtonRef}
           onClose={setOpen}
           show={open}
         />
@@ -147,9 +150,13 @@ export async function getServerSideProps(context) {
   let company = await getCompany(context.params.id, prisma);
   company = JSON.parse(JSON.stringify(company));
 
+  let interactions = await getInteractions(context.params.id, prisma);
+  interactions = JSON.parse(JSON.stringify(interactions));
+
   return {
     props: {
       company,
+      interactions,
     },
   };
 }

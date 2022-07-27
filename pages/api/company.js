@@ -1,6 +1,6 @@
 import prisma from "lib/prisma";
 import { getSession } from "next-auth/react";
-import { defaultStatus } from "lib/config";
+import { defaultStatus, defaultNewProspectSetting } from "lib/config";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -37,6 +37,11 @@ export default async function handler(req, res) {
         .status(400)
         .json({ message: "Required parameter type missing" });
 
+    if (!req.body.actionDate)
+      return res
+        .status(400)
+        .json({ message: "Required parameter type missing" });
+
     await prisma.company.create({
       data: {
         name: req.body.companyName,
@@ -45,6 +50,16 @@ export default async function handler(req, res) {
         sourceId: req.body.sourceSelect,
         businesstypeId: req.body.businesstypeSelect,
         statusId: defaultStatus,
+        Action: {
+          create: {
+            createdBy: req.body.createdBy,
+            actiontypeId: defaultNewProspectSetting,
+            businessDate: req.body.actionDate,
+          },
+        },
+      },
+      include: {
+        Action: true,
       },
     });
 

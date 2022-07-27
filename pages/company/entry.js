@@ -11,6 +11,7 @@ import InputSelectLabel from "components/core/InputSelectLabel";
 import ButtonPrimary from "components/core/ButtonPrimary";
 import MessageError from "components/core/MessageError";
 import MessageSuccess from "components/core/MessageSuccess";
+import InputDatePickerLabel from "components/core/InputDatePickerLabel";
 
 export default function CompanyPage({ segment, source, bt }) {
   const { data: session, status } = useSession();
@@ -27,6 +28,7 @@ export default function CompanyPage({ segment, source, bt }) {
   const [validationerror, setValidationError] = useState(false);
   const [successflag, setSuccessFlag] = useState(false);
   const [buttonactive, setButtonActive] = useState(false);
+  const [actionDate, setActionDate] = useState(new Date());
 
   if (!session) {
     return <div className="text-center pt-8">Not logged in</div>;
@@ -109,6 +111,11 @@ export default function CompanyPage({ segment, source, bt }) {
                 setSuccessFlag(false);
               }}
             />
+            <InputDatePickerLabel
+              selected={actionDate}
+              onChange={(date) => setActionDate(date)}
+              label="Registration Date"
+            />
             <div className="p-4">
               <ButtonPrimary
                 title="Create New Company"
@@ -143,6 +150,8 @@ export default function CompanyPage({ segment, source, bt }) {
       companyName.trim() === "" ||
       !otherName ||
       otherName.trim() === "" ||
+      !actionDate ||
+      actionDate === "" ||
       !segmentSelect ||
       !businesstypeSelect ||
       !sourceSelect
@@ -157,6 +166,8 @@ export default function CompanyPage({ segment, source, bt }) {
           segmentSelect,
           businesstypeSelect,
           sourceSelect,
+          createdBy: session.user.id,
+          actionDate,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -170,6 +181,7 @@ export default function CompanyPage({ segment, source, bt }) {
       setSegmentSelect("");
       setBusinessTypeSelect("");
       setSourceSelect("");
+      setActionDate(new Date());
     }
   }
 }

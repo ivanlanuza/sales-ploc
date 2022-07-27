@@ -24,6 +24,7 @@ model Status {
   code               String?
   name               String?
   description        String?
+  nextActionId       String?
   ActionTypeOnStatus ActionTypeOnStatus[]
   Company            Company[]
 }

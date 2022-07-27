@@ -13,7 +13,7 @@ export default function ComboBox({ label, data, value, onChange, min }) {
         });
 
   return (
-    <div className="bg-gray-50  font-mono px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-t border-gray-100">
+    <div className="bg-gray-50  font-mono z-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-t border-gray-100">
       <dt className="text-sm font-medium text-gray-500">{label}</dt>
       <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
         <Combobox value={value} onChange={onChange}>
@@ -34,7 +34,7 @@ export default function ComboBox({ label, data, value, onChange, min }) {
           </div>
           {query.length >= min && (
             <Combobox.Options
-              className="w-72 absolute -mt-0 ml-2 max-h-60 overflow-auto rounded-lg bg-white py-1 
+              className="w-72 absolute z-50 -mt-0 ml-2 max-h-60 overflow-auto rounded-lg bg-white py-1 
         text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
             >
               {filteredEntry.length === 0 && query !== "" ? (

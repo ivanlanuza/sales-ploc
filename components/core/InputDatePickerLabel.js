@@ -26,7 +26,9 @@ const InputDatePickerLabel = ({ selected, label, onChange }) => (
                           -mt-2
                           -ml-0
                           -mb-3
-                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                          z-0 
+                          relative"
             />
           </div>
         </dd>

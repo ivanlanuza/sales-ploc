@@ -30,6 +30,7 @@ export default function entry({ companies }) {
   const [validationerror, setValidationError] = useState(false);
   const [successflag, setSuccessFlag] = useState(false);
   const [actionDate, setActionDate] = useState(new Date());
+  const [nextStatus, setNextStatus] = useState();
   const dataArray = [];
 
   if (!session) {
@@ -85,10 +86,21 @@ export default function entry({ companies }) {
                   data={actionTypeList}
                   placeholder="Select interaction type"
                   onChange={(e) => {
+                    setNextStatus("");
                     setActionType(e.target.value);
                     showActionFields(e.target.value);
                     setButtonActive(true);
                     setSuccessFlag(false);
+
+                    //check if Company's Status needs to be auto-updated based on interaction type
+                    let chosenAction = actionTypeList.filter(function (el) {
+                      return el.id === e.target.value;
+                    });
+                    if (chosenAction[0].nextstatus) {
+                      if (chosenAction[0].nextstatus != company.status.id) {
+                        setNextStatus(chosenAction[0].nextstatus);
+                      }
+                    }
                   }}
                 />
                 {actionFieldList.map((input, index) => {
@@ -156,7 +168,9 @@ export default function entry({ companies }) {
   async function createRecords() {
     setValidationError(false);
 
-    //used to clean-up the dynamic fields data to be send for API write
+    //console.log(nextStatus + company.id);
+
+    //used to clean-up the dynamic fields data to be sent for API write
     var i;
     for (i = 0; i < actionFieldList.length; i++) {
       if (actionFieldList[i]["value"] != "") {
@@ -182,6 +196,23 @@ export default function entry({ companies }) {
         },
         method: "POST",
       });
+
+      //Update Company Status to next status if available
+      //console.log(nextStatus);
+      if (nextStatus && nextStatus != "") {
+        await fetch("/api/updatecompanystatus", {
+          body: JSON.stringify({
+            companyid: company.id,
+            nextstatus: nextStatus,
+            createdBy: session.user.id,
+            businessDate: actionDate,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+          method: "PUT",
+        });
+      }
 
       setSuccessFlag(true);
       setCompany("");
@@ -226,6 +257,7 @@ export default function entry({ companies }) {
                 cleanActionTypes.push({
                   id: actiontypes[i].actionId,
                   name: actiontypes[i].actiontype.description,
+                  nextstatus: actiontypes[i].nextStatusId,
                 });
               }
               setActionTypeList(cleanActionTypes);
