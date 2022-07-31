@@ -19,6 +19,7 @@ export default function CompanyPage({ segment, source, bt }) {
 
   const [companyName, setCompanyName] = useState("");
   const [otherName, setOtherName] = useState("");
+  const [address, setAddress] = useState("");
 
   const [segmentSelect, setSegmentSelect] = useState("");
   const [businesstypeSelect, setBusinessTypeSelect] = useState("");
@@ -72,6 +73,19 @@ export default function CompanyPage({ segment, source, bt }) {
                 setSuccessFlag(false);
               }}
             />
+            <InputTextBoxLabel
+              type="text"
+              label="Business Address"
+              id="address"
+              placeholder="Enter Business Address"
+              value={address}
+              onChange={(e) => {
+                setAddress(e.target.value);
+                setButtonActive(false);
+                setSuccessFlag(false);
+              }}
+            />
+
             <InputSelectLabel
               label="Segment"
               value={segmentSelect}
@@ -168,6 +182,7 @@ export default function CompanyPage({ segment, source, bt }) {
           sourceSelect,
           createdBy: session.user.id,
           actionDate,
+          address,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -180,6 +195,7 @@ export default function CompanyPage({ segment, source, bt }) {
       setOtherName("");
       setSegmentSelect("");
       setBusinessTypeSelect("");
+      setAddress("");
       setSourceSelect("");
       setActionDate(new Date());
     }

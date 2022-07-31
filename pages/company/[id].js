@@ -27,11 +27,11 @@ export default function entry({ company, interactions }) {
     return <div className="text-center pt-8">Not logged in</div>;
   }
 
-  if (status === "authenticated" && !session.user.auth) {
+  if ((status === "authenticated" && !session.user.auth) || !company) {
     router.push("/notauthorized");
   }
 
-  if (status === "authenticated" && session.user.auth) {
+  if (status === "authenticated" && session.user.auth && company) {
     return (
       <div className="text-center">
         <HeaderBar email={session.user.email} image={session.user.image} />
@@ -44,6 +44,10 @@ export default function entry({ company, interactions }) {
             <div className="border-t border-gray-200">
               <InputDataLabel label="Company Name" value={company.name} />
               <InputDataLabel label="L.E. Name" value={company.other_name} />
+              <InputDataLabel
+                label="Business Address"
+                value={company.address}
+              />
               <InputDataLabel label="Segment" value={company.segment.name} />
               <InputDataLabel
                 label="Business Type"

@@ -96,9 +96,12 @@ export default function entry({ companies }) {
                     let chosenAction = actionTypeList.filter(function (el) {
                       return el.id === e.target.value;
                     });
-                    if (chosenAction[0].nextstatus) {
-                      if (chosenAction[0].nextstatus != company.status.id) {
-                        setNextStatus(chosenAction[0].nextstatus);
+
+                    if (chosenAction.length != 0) {
+                      if (chosenAction[0].nextstatus) {
+                        if (chosenAction[0].nextstatus != company.status.id) {
+                          setNextStatus(chosenAction[0].nextstatus);
+                        }
                       }
                     }
                   }}

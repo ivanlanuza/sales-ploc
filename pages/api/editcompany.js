@@ -43,6 +43,7 @@ export default async function handler(req, res) {
         segmentId: req.body.segmentSelect,
         sourceId: req.body.sourceSelect,
         businesstypeId: req.body.businesstypeSelect,
+        address: req.body.address,
       },
       where: {
         id: req.body.id,

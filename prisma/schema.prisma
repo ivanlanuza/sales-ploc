@@ -11,12 +11,13 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
+  id        String    @id @default(cuid())
   email     String?
   auth      String?
-  createdAt DateTime @default(now())
-  isActive  Boolean  @default(true)
+  createdAt DateTime  @default(now())
+  isActive  Boolean   @default(true)
   Action    Action[]
+  Company   Company[]
 }
 
 model Status {
@@ -79,6 +80,9 @@ model Company {
   ContactInfo    ContactInfo[]
   Action         Action[]
   createdAt      DateTime      @default(now())
+  address        String?
+  userId         String
+  user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Segment {

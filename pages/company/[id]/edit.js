@@ -20,6 +20,7 @@ export default function CompanyEdit({ company, segment, source, bt }) {
 
   const [companyName, setCompanyName] = useState(company.name);
   const [otherName, setOtherName] = useState(company.other_name);
+  const [address, setAddress] = useState(company.address);
   const [segmentSelect, setSegmentSelect] = useState(company.segmentId);
   const [businesstypeSelect, setBusinessTypeSelect] = useState(
     company.businesstypeId
@@ -67,6 +68,17 @@ export default function CompanyEdit({ company, segment, source, bt }) {
             value={otherName}
             onChange={(e) => {
               setOtherName(e.target.value);
+            }}
+          />
+          <InputTextBoxLabel
+            type="text"
+            label="Business Address"
+            id="address"
+            placeholder="Enter Business Address"
+            value={address}
+            onChange={(e) => {
+              setAddress(e.target.value);
+              setButtonActive(false);
             }}
           />
 
@@ -154,6 +166,7 @@ export default function CompanyEdit({ company, segment, source, bt }) {
           businesstypeSelect,
           sourceSelect,
           id: company.id,
+          address,
         }),
         headers: {
           "Content-Type": "application/json",

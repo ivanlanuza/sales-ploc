@@ -110,7 +110,7 @@ export default function HeaderBar({ email, image }) {
               )}
             </Popover>
             <a
-              href="#"
+              href="/insights/dashboard"
               className="text-base font-bold text-indigo-500 hover:text-indigo-900"
             >
               Insights

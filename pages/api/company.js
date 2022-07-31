@@ -49,7 +49,9 @@ export default async function handler(req, res) {
         segmentId: req.body.segmentSelect,
         sourceId: req.body.sourceSelect,
         businesstypeId: req.body.businesstypeSelect,
+        address: req.body.address,
         statusId: defaultStatus,
+        userId: req.body.createdBy,
         Action: {
           create: {
             createdBy: req.body.createdBy,
