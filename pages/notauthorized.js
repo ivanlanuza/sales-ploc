@@ -11,7 +11,14 @@ export default function Home() {
       <div className="text-center pt-8">
         <button
           className="border px-8 py-2 mt-5 font-bold rounded-full bg-black text-white border-black "
-          onClick={() => signOut({ callbackUrl: "http://localhost:3000/" })}
+          onClick={() =>
+            signOut({
+              callbackUrl:
+                process.env.NODE_ENV === "development"
+                  ? "http://localhost:3000/"
+                  : "https://ploc.iripple.com/",
+            })
+          }
         >
           Try logging in again
         </button>
