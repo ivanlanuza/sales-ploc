@@ -22,7 +22,6 @@ export default async function handler(req, res) {
         status: true,
       },
     });
-    //console.log(company);
     res.status(200).json(company);
     return;
   }

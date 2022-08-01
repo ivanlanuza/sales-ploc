@@ -66,7 +66,6 @@ export default function CompanyList({}) {
                   data={filterlist}
                   onChange={(e) => {
                     setFilterSelect(e.target.value);
-                    //console.log(e.target.value);
                   }}
                 />
                 <StackedButtonPrimary
@@ -153,7 +152,5 @@ export default function CompanyList({}) {
       .then((data) => {
         setScorecard(data);
       });
-
-    //console.log(scorecard.length);
   }
 }

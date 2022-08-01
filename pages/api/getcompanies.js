@@ -39,7 +39,6 @@ export default async function handler(req, res) {
       },
       take: req.query.take ? parseInt(req.query.take) : undefined,
     });
-    //console.log(companies);
     res.status(200).json(companies);
     return;
   }

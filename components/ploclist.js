@@ -10,7 +10,6 @@ const Datalist = ({
 }) => {
   if (!datalist) return null;
 
-  //console.log("gbF: " + groupbyFilter);
   return (
     <>
       {datalist.map((data, index) => (

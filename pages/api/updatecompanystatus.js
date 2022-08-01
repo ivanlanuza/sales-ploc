@@ -36,8 +36,6 @@ export default async function handler(req, res) {
       },
     });
 
-    //console.log("1: " + req.body.nextstatus)
-    //console.log("2: " + status.nextActionId)
     await prisma.action.create({
       data: {
         companyId: req.body.companyid,

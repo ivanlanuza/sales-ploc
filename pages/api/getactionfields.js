@@ -16,7 +16,6 @@ export default async function handler(req, res) {
         actiontypeId: req.query.id,
       },
     });
-    //console.log(actionfields);
     res.status(200).json(actionfields);
     return;
   }

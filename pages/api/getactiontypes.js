@@ -19,7 +19,6 @@ export default async function handler(req, res) {
         actiontype: true,
       },
     });
-    //console.log(actiontypes);
     res.status(200).json(actiontypes);
     return;
   }

@@ -171,8 +171,6 @@ export default function Entry({ companies }) {
   async function createRecords() {
     setValidationError(false);
 
-    //console.log(nextStatus + company.id);
-
     //used to clean-up the dynamic fields data to be sent for API write
     var i;
     for (i = 0; i < actionFieldList.length; i++) {
@@ -201,7 +199,6 @@ export default function Entry({ companies }) {
       });
 
       //Update Company Status to next status if available
-      //console.log(nextStatus);
       if (nextStatus && nextStatus != "") {
         await fetch("/api/updatecompanystatus", {
           body: JSON.stringify({
@@ -286,7 +283,6 @@ export default function Entry({ companies }) {
         .then((res) => res.json())
         .then((fieldsinfo) => {
           setActionFieldList(fieldsinfo);
-          //console.log(fieldsinfo);
         });
     }
   }

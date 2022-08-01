@@ -160,8 +160,6 @@ export default function CompanyList({ segment, bt }) {
       .then((data) => {
         setScorecard(data);
       });
-
-    //console.log(scorecard.length);
   }
 }
 

@@ -30,7 +30,6 @@ export default async function handler(req, res) {
     GROUP BY sourceId, actiontypeId, Source.name, ActionType.code 
     ORDER BY sourceId, actiontypeId`;
 
-    //console.log(orig);
     var a = [];
     if (orig.length != 0) {
       var name = "";
@@ -50,7 +49,7 @@ export default async function handler(req, res) {
       a.push(x);
     }
     res.status(200).json(a);
-    //console.log(a);
+
     return;
   }
 }

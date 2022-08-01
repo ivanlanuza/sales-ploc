@@ -36,8 +36,6 @@ export default async function handler(req, res) {
         .status(400)
         .json({ message: "Required parameter user missing" });
 
-    //console.log(req.body.actionData);
-
     await prisma.action.create({
       data: {
         companyId: req.body.companyId,

@@ -42,7 +42,7 @@ export default async function handler(req, res) {
       a.push(x);
     }
     res.status(200).json(a);
-    //console.log(a);
+
     return;
   }
 
@@ -75,7 +75,7 @@ export default async function handler(req, res) {
       a.push(x);
     }
     res.status(200).json(a);
-    //console.log(a);
+
     return;
   }
 
@@ -99,7 +99,7 @@ export default async function handler(req, res) {
       a.push(x);
     }
     res.status(200).json(a);
-    //console.log(a);
+
     return;
   }
 
@@ -132,7 +132,7 @@ export default async function handler(req, res) {
       a.push(x);
     }
     res.status(200).json(a);
-    //console.log(a);
+
     return;
   }
 }

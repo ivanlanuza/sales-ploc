@@ -11,9 +11,7 @@ export default async function handler(req, res) {
   //const session = await getSession({ req });
 
   //if (!session) return res.status(401).json({ message: "Not logged in" });
-  //console.log("entered getcompanyfromreports");
   var mygrouping = req.query.groupbyfilter;
-  //console.log(mygrouping);
   if (req.method === "GET" && mygrouping === "source") {
     const segmentFilter = Prisma.sql` AND Company.segmentId = ${req.query.segmentId}`;
     const btFilter = Prisma.sql` AND Company.businesstypeId = ${req.query.businesstypeId}`;
@@ -40,7 +38,7 @@ export default async function handler(req, res) {
     AND Company.segmentId = ${req.query.id}`;
 
     res.status(200).json(data);
-    //console.log(req.query.id + " " + req.query.companyStatusId);
+
     return;
   }
 
@@ -52,7 +50,7 @@ export default async function handler(req, res) {
     AND Company.businesstypeId = ${req.query.id}`;
 
     res.status(200).json(data);
-    //console.log(req.query.id + " " + req.query.companyStatusId);
+
     return;
   }
 
@@ -75,7 +73,7 @@ export default async function handler(req, res) {
     AND Company.userId = ${req.query.id}`;
 
     res.status(200).json(data);
-    //console.log(req.query.id + " " + req.query.companyStatusId);
+
     return;
   }
 }
