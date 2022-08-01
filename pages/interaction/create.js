@@ -17,7 +17,7 @@ import InputDatePickerLabel from "components/core/InputDatePickerLabel";
 import { getSimpleCompanyList } from "lib/data";
 import prisma from "lib/prisma";
 
-export default function entry({ companies }) {
+export default function Entry({ companies }) {
   const { data: session, status } = useSession();
   const router = useRouter();
 

@@ -86,7 +86,7 @@ export default function CompanyList({ segment, bt }) {
             <div className="p-0 pr-2 place-content-center ">
               <div className="block bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <CardHeader
-                  title="PLOC based on Lead Sources"
+                  title="Historical PLOC by Lead Source"
                   subtitle="Understand which sources drive more return."
                 />
 

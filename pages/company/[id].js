@@ -16,7 +16,7 @@ import InputDataLabel from "components/core/InputDataLabel";
 import SimpleModal from "components/core/SimpleModal";
 import InteractionTable from "components/interactiontable";
 
-export default function entry({ company, interactions }) {
+export default function Entry({ company, interactions }) {
   const { data: session, status } = useSession();
   const router = useRouter();
 

@@ -21,6 +21,12 @@ import {
 
 const features = [
   {
+    name: "Company Directory",
+    description: "Display all companies in the database.",
+    icon: ClipboardListIcon,
+    href: "/company/list",
+  },
+  {
     name: "PLOC Current Snapshot",
     description: "View the current PLOC pipeline.",
     icon: OfficeBuildingIcon,
@@ -38,13 +44,13 @@ const features = [
     icon: ClipboardListIcon,
     href: "#",
   },
-  {
+  /*{
     name: "[COMING SOON!] Summarized PLOC Worksheet",
     description: "Have a full view of your prospect base.",
     icon: TemplateIcon,
     href: "#",
   },
-  /*{
+  {
     name: "Next Best Actions",
     description: "Get prescriptions on what to do next.",
     icon: LightningBoltIcon,
@@ -99,7 +105,11 @@ export default function Example() {
               <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
                 {features.map((feature) => (
                   <Link href={feature.href} key={feature.name}>
-                    <div key={feature.name} className="relative">
+                    <div
+                      key={feature.name}
+                      className="relative"
+                      style={{ cursor: "pointer" }}
+                    >
                       <dt>
                         <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
                           <feature.icon
