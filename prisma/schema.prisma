@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -51,8 +51,6 @@ model Field {
   actiontype   ActionType   @relation(fields: [actiontypeId], references: [id], onDelete: Cascade)
   fieldType    String
   ActionData   ActionData[]
-  Action       Action?      @relation(fields: [actionId], references: [id])
-  actionId     String?
 }
 
 model ActionTypeOnStatus {
@@ -135,14 +133,13 @@ model Action {
   user         User         @relation(fields: [createdBy], references: [id], onDelete: Cascade)
   businessDate DateTime     @default(now())
   ActionData   ActionData[]
-  Field        Field[]
 }
 
 model ActionData {
-  id       String @id @default(cuid())
+  id       String  @id @default(cuid())
   actionId String
-  action   Action @relation(fields: [actionId], references: [id], onDelete: Cascade)
+  action   Action  @relation(fields: [actionId], references: [id], onDelete: Cascade)
   fieldId  String
-  field    Field  @relation(fields: [fieldId], references: [id], onDelete: Cascade)
-  value    String
+  field    Field   @relation(fields: [fieldId], references: [id], onDelete: Cascade)
+  value    String?
 }

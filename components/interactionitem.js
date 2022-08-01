@@ -14,7 +14,7 @@ const Interaction = ({ interaction }) => {
       <td className="px-6 py-4">{interaction.actiontype.description}</td>
       <td className="px-6 py-4">
         {interaction.ActionData.map((data, index) => (
-          <div>
+          <div key={index}>
             {data.field.name} : {data.value}
           </div>
         ))}

@@ -15,13 +15,13 @@ export default async function handler(req, res) {
 
   if (req.method === "GET" && myfilter === "segment") {
     const orig =
-      await prisma.$queryRaw`SELECT "Company"."segmentId", "Company"."statusId", "Status"."name" as status_name, "Segment"."name" as segment_name,
-      CAST(COUNT(DISTINCT "Company"."id") AS INTEGER) 
-      FROM "Company"
-      INNER JOIN "Status" ON "Company"."statusId" = "Status"."id"
-      INNER JOIN "Segment" ON "Company"."segmentId" = "Segment"."id"
-      GROUP BY "Company"."segmentId", "Company"."statusId", "Status"."name", "Segment"."name"
-      ORDER BY "Company"."segmentId", "Company"."statusId"`;
+      await prisma.$queryRaw`SELECT Company.segmentId, Company.statusId, Status.name as status_name, Segment.name as segment_name,
+      CAST(COUNT(DISTINCT Company.id) AS CHAR) as count 
+      FROM Company
+      INNER JOIN Status ON Company.statusId = Status.id
+      INNER JOIN Segment ON Company.segmentId = Segment.id
+      GROUP BY Company.segmentId, Company.statusId, Status.name, Segment.name
+      ORDER BY Company.segmentId, Company.statusId`;
 
     var a = [];
     if (orig.length != 0) {
@@ -48,13 +48,13 @@ export default async function handler(req, res) {
 
   if (req.method === "GET" && myfilter === "bt") {
     const orig =
-      await prisma.$queryRaw`SELECT "Company"."businesstypeId" , "Company"."statusId", "Status"."name" as status_name, "BusinessType"."name" as bt_name,
-      CAST(COUNT(DISTINCT "Company"."id") AS INTEGER) 
-      FROM "Company"
-      INNER JOIN "Status" ON "Company"."statusId" = "Status"."id"
-      INNER JOIN "BusinessType" ON "Company"."businesstypeId" = "BusinessType"."id"
-      GROUP BY "Company"."businesstypeId", "Company"."statusId", "Status"."name", "BusinessType"."name"
-      ORDER BY "Company"."businesstypeId", "Company"."statusId"`;
+      await prisma.$queryRaw`SELECT Company.businesstypeId , Company.statusId, Status.name as status_name, BusinessType.name as bt_name,
+      CAST(COUNT(DISTINCT Company.id) AS CHAR) as count 
+      FROM Company
+      INNER JOIN Status ON Company.statusId = Status.id
+      INNER JOIN BusinessType ON Company.businesstypeId = BusinessType.id
+      GROUP BY Company.businesstypeId, Company.statusId, Status.name, BusinessType.name
+      ORDER BY Company.businesstypeId, Company.statusId`;
 
     var a = [];
     if (orig.length != 0) {
@@ -81,12 +81,12 @@ export default async function handler(req, res) {
 
   if (req.method === "GET" && myfilter === "alldata") {
     const orig =
-      await prisma.$queryRaw`SELECT "Company"."statusId", "Status"."name" as status_name,
-      CAST(COUNT(DISTINCT "Company"."id") AS INTEGER) 
-      FROM "Company"
-      INNER JOIN "Status" ON "Company"."statusId" = "Status"."id"
-      GROUP BY "Company"."statusId", "Status"."name"
-      ORDER BY "Company"."statusId"`;
+      await prisma.$queryRaw`SELECT Company.statusId, Status.name as status_name,
+      CAST(COUNT(DISTINCT Company.id) AS CHAR) as count 
+      FROM Company
+      INNER JOIN Status ON Company.statusId = Status.id
+      GROUP BY Company.statusId, Status.name
+      ORDER BY Company.statusId`;
 
     var a = [];
     if (orig.length != 0) {
@@ -105,13 +105,13 @@ export default async function handler(req, res) {
 
   if (req.method === "GET" && myfilter === "user") {
     const orig =
-      await prisma.$queryRaw`SELECT "Company"."userId", "Company"."statusId", "Status"."name" as status_name, "User"."email" as user_name,
-      CAST(COUNT(DISTINCT "Company"."id") AS INTEGER) 
-      FROM "Company"
-      INNER JOIN "Status" ON "Company"."statusId" = "Status"."id"
-      INNER JOIN "User" ON "Company"."userId" = "User"."id"
-      GROUP BY "Company"."userId", "Company"."statusId", "Status"."name", "User"."email"
-      ORDER BY "Company"."userId", "Company"."statusId"`;
+      await prisma.$queryRaw`SELECT Company.userId, Company.statusId, Status.name as status_name, User.email as user_name,
+      CAST(COUNT(DISTINCT Company.id) AS CHAR) as count 
+      FROM Company
+      INNER JOIN Status ON Company.statusId = Status.id
+      INNER JOIN User ON Company.userId = User.id
+      GROUP BY Company.userId, Company.statusId, Status.name, User.email
+      ORDER BY Company.userId, Company.statusId`;
 
     var a = [];
     if (orig.length != 0) {
