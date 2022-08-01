@@ -16,6 +16,7 @@
     "next": "12.2.1",
     "next-auth": "^4.9.0",
     "pg": "^8.7.3",
+    "prisma": "^4.1.1",
     "react": "18.2.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "18.2.0",
@@ -26,7 +27,6 @@
     "eslint": "8.19.0",
     "eslint-config-next": "12.2.1",
     "postcss": "^8.4.14",
-    "prisma": "^4.0.0",
     "tailwindcss": "^3.1.5"
   }
 }
