@@ -26,7 +26,7 @@ export default function Entry({ companies }) {
   const [actionTypeList, setActionTypeList] = useState([]);
   const [actionType, setActionType] = useState("");
   const [actionFieldList, setActionFieldList] = useState([]);
-  const [buttonactive, setButtonActive] = useState(true);
+  const [buttonactive, setButtonActive] = useState(false);
   const [validationerror, setValidationError] = useState(false);
   const [successflag, setSuccessFlag] = useState(false);
   const [actionDate, setActionDate] = useState(new Date());
@@ -144,10 +144,12 @@ export default function Entry({ companies }) {
                     <ButtonPrimary
                       href=""
                       title="Save New Interaction"
+                      disabled={!buttonactive}
                       onClick={(e) => {
                         e.preventDefault();
                         setButtonActive(false);
                         createRecords();
+                        //console.log("clicked");
                       }}
                     />
                   </div>
