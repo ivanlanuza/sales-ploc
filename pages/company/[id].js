@@ -27,7 +27,11 @@ export default function Entry({ company, interactions }) {
     return <div className="text-center pt-8">Not logged in</div>;
   }
 
-  if ((status === "authenticated" && !session.user.auth) || !company) {
+  if (
+    (status === "authenticated" && !session.user.auth) ||
+    !company ||
+    company.isActive === false
+  ) {
     router.push("/notauthorized");
   }
 

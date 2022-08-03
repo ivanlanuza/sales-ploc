@@ -20,6 +20,7 @@ export default async function handler(req, res) {
       FROM Company
       INNER JOIN Status ON Company.statusId = Status.id
       INNER JOIN Segment ON Company.segmentId = Segment.id
+      WHERE Company.isActive = true 
       GROUP BY Company.segmentId, Company.statusId, Status.name, Segment.name
       ORDER BY Company.segmentId, Company.statusId`;
 
@@ -53,6 +54,7 @@ export default async function handler(req, res) {
       FROM Company
       INNER JOIN Status ON Company.statusId = Status.id
       INNER JOIN BusinessType ON Company.businesstypeId = BusinessType.id
+      WHERE Company.isActive = true 
       GROUP BY Company.businesstypeId, Company.statusId, Status.name, BusinessType.name
       ORDER BY Company.businesstypeId, Company.statusId`;
 
@@ -85,6 +87,7 @@ export default async function handler(req, res) {
       CAST(COUNT(DISTINCT Company.id) AS CHAR) as count 
       FROM Company
       INNER JOIN Status ON Company.statusId = Status.id
+      WHERE Company.isActive = true 
       GROUP BY Company.statusId, Status.name
       ORDER BY Company.statusId`;
 
@@ -110,6 +113,7 @@ export default async function handler(req, res) {
       FROM Company
       INNER JOIN Status ON Company.statusId = Status.id
       INNER JOIN User ON Company.userId = User.id
+      WHERE Company.isActive = true 
       GROUP BY Company.userId, Company.statusId, Status.name, User.email
       ORDER BY Company.userId, Company.statusId`;
 

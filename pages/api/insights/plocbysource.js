@@ -24,7 +24,8 @@ export default async function handler(req, res) {
       INNER JOIN Source ON Company.sourceId = Source.id
       INNER JOIN Action ON Company.id = Action.companyId 
       INNER JOIN ActionType ON ActionType.id = Action.actiontypeId
-    WHERE actiontypeId IN ('01','02','03','04')
+    WHERE isActive = true 
+    AND actiontypeId IN ('01','02','03','04')
     ${req.query.segmentId ? segmentFilter : Prisma.empty}
     ${req.query.businesstypeId ? btFilter : Prisma.empty}
     GROUP BY sourceId, actiontypeId, Source.name, ActionType.code 

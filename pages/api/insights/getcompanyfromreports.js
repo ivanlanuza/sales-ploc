@@ -20,7 +20,8 @@ export default async function handler(req, res) {
       await prisma.$queryRaw`SELECT DISTINCT(Company.name), Company.id
     FROM Company
     INNER JOIN Action ON Company.id = Action.companyId
-    WHERE Company.sourceId = ${req.query.id}
+    WHERE Company.isActive = true 
+    AND Company.sourceId = ${req.query.id}
     AND Action.actiontypeId = ${req.query.actiontypeId}
     ${req.query.segmentId ? segmentFilter : Prisma.empty}
     ${req.query.businesstypeId ? btFilter : Prisma.empty}`;
@@ -34,7 +35,8 @@ export default async function handler(req, res) {
     const data =
       await prisma.$queryRaw`SELECT DISTINCT(Company.name), Company.id
     FROM Company
-    WHERE Company.statusId = ${req.query.companyStatusId}
+    WHERE Company.isActive = true 
+    AND Company.statusId = ${req.query.companyStatusId}
     AND Company.segmentId = ${req.query.id}`;
 
     res.status(200).json(data);
@@ -46,7 +48,8 @@ export default async function handler(req, res) {
     const data =
       await prisma.$queryRaw`SELECT DISTINCT(Company.name), Company.id
     FROM Company
-    WHERE Company.statusId = ${req.query.companyStatusId}
+    WHERE Company.isActive = true 
+    AND Company.statusId = ${req.query.companyStatusId}
     AND Company.businesstypeId = ${req.query.id}`;
 
     res.status(200).json(data);
@@ -58,7 +61,8 @@ export default async function handler(req, res) {
     const data =
       await prisma.$queryRaw`SELECT DISTINCT(Company.name), Company.id
     FROM Company
-    WHERE Company.statusId = ${req.query.companyStatusId}`;
+    WHERE Company.isActive = true 
+    AND Company.statusId = ${req.query.companyStatusId}`;
 
     res.status(200).json(data);
 
@@ -69,7 +73,8 @@ export default async function handler(req, res) {
     const data =
       await prisma.$queryRaw`SELECT DISTINCT(Company.name), Company.id
     FROM Company
-    WHERE Company.statusId = ${req.query.companyStatusId}
+    WHERE Company.isActive = true 
+    AND Company.statusId = ${req.query.companyStatusId}
     AND Company.userId = ${req.query.id}`;
 
     res.status(200).json(data);
