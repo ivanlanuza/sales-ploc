@@ -10,6 +10,8 @@ import {
   BriefcaseIcon,
   ChatAlt2Icon,
   PlusIcon,
+  ChartBarIcon,
+  LogoutIcon,
 } from "@heroicons/react/outline";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 
@@ -40,58 +42,68 @@ function classNames(...classes) {
 
 export default function HeaderBar({ email, image }) {
   return (
-    <div className="mx-auto w-full font-mono">
-      <div className="m-0 flex justify-between items-center border-b-2 border-gray-100 py-4 md:justify-start md:space-x-10">
+    <div className="flex py-4 font-mono border-b-2 border-gray-100">
+      <div className="flex-none">
         <Link
           href="/interaction/create"
           className="text-base font-bold text-indigo-500 hover:text-indigo-900"
         >
-          <span
-            className="pl-8 text-indigo-600 font-bold"
-            style={{ cursor: "pointer" }}
-          >
-            New Interaction
-          </span>
+          <div className="float-left">
+            <ChatAlt2Icon
+              style={{ cursor: "pointer" }}
+              className="h-8 w-8 text-indigo-600 border-indigo-600 rounded-md p-1 border-2 mr-0 ml-8 float-left"
+            />
+            <span
+              className="hidden lg:block pl-1 pt-1 text-indigo-600 font-bold float-left"
+              style={{ cursor: "pointer" }}
+            >
+              New Interaction
+            </span>
+          </div>
         </Link>
 
         <Link
           href="/company/entry"
           className="text-base font-bold text-indigo-500 hover:text-indigo-900"
         >
-          <span
-            className="pl-8 text-indigo-600 font-bold"
-            style={{ cursor: "pointer" }}
-          >
-            New Company
-          </span>
+          <div className="float-left">
+            <BriefcaseIcon
+              style={{ cursor: "pointer" }}
+              className="h-8 w-8 text-indigo-600 border-indigo-600 rounded-md p-1 border-2 mr-0 ml-8 float-left"
+            />
+            <span
+              className="hidden lg:block pl-1 pt-1 text-indigo-600 font-bold float-left"
+              style={{ cursor: "pointer" }}
+            >
+              New Company
+            </span>
+          </div>
         </Link>
 
         <Link
           href="/insights/dashboard"
           className="text-base font-bold text-indigo-500 hover:text-indigo-900"
         >
-          <span
-            className="pl-8 text-indigo-600 font-bold"
-            style={{ cursor: "pointer" }}
-          >
-            Insights
-          </span>
-        </Link>
-        <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-          <span className="text-gray-500 lowercase text-sm float-right pr-4">
-            {email}
-          </span>
-          {image && (
-            <Image
-              height="40"
-              width="40"
-              src={image}
-              alt=""
-              className="rounded-3xl w-10 float-right border-gray-200 border-2 object-center"
+          <div className="float-left">
+            <ChartBarIcon
+              style={{ cursor: "pointer" }}
+              className="h-8 w-8 text-indigo-600 border-indigo-600 rounded-md p-1 border-2 border-solid mr-0 ml-8 float-left"
             />
-          )}
-          <button
-            className="text-gray-900 bg-white border border-indigo-600 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-4 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 ml-4 float-right"
+            <span
+              className="hidden lg:block pl-1 pt-1 text-indigo-600 font-bold float-left"
+              style={{ cursor: "pointer" }}
+            >
+              Insights
+            </span>
+          </div>
+        </Link>
+      </div>
+      <div className="grow"></div>
+      <div className="flex-none">
+        <div className="float-right">
+          <LogoutIcon
+            style={{ cursor: "pointer" }}
+            className="h-8 w-8 text-indigo-600 border-indigo-600 rounded-md p-1 border-2 ml-2 mr-4"
             onClick={() =>
               signOut({
                 callbackUrl:
@@ -100,10 +112,23 @@ export default function HeaderBar({ email, image }) {
                     : "https://ploc.iripple.com/",
               })
             }
-          >
-            Sign out
-          </button>
+          />
         </div>
+
+        <div className="hidden lg:block float-right mr-4">
+          {image && (
+            <Image
+              height="32"
+              width="32"
+              src={image}
+              alt=""
+              className=" rounded-3xl w-10 border-gray-200 border-2 mt-4"
+            />
+          )}
+        </div>
+        <span className="hidden lg:block float-right text-gray-500 lowercase text-sm pt-2 pr-4">
+          {email}
+        </span>
       </div>
     </div>
   );

@@ -38,8 +38,8 @@ export default function CompanyList({ segment, bt }) {
         <div>
           <HeaderBar email={session.user.email} image={session.user.image} />
         </div>
-        <div className="grid grid-cols-8 gap-4">
-          <div className="justify-center col-span-2 m-0 mb-2 py-8 px-2 place-content-center">
+        <div className="md:flex p-4 ">
+          <div className="">
             <div className="block bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
               <CardHeader
                 title="Filters"
@@ -82,26 +82,24 @@ export default function CompanyList({ segment, bt }) {
               </div>
             </div>
           </div>
-          <div className="justify-center col-span-6 py-8 px-2 m-0 mb-6 place-content-centter">
-            <div className="p-0 pr-2 place-content-center ">
-              <div className="block bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+          <div className="mt-4 lg:mt-0 ml-0 lg:ml-4 w-full">
+            <div className="p-0 w-full">
+              <div className="block w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <CardHeader
-                  title="Historical PLOC by Lead Source"
+                  title="Historical PLOC by Source"
                   subtitle="Understand which sources drive more return."
                 />
 
                 {scorecard.length != 0 && (
-                  <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead className="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <table className="hidden lg:block w-full font-mono text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead className="text-sm w-full text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                       <tr>
-                        <th scope="col" className="px-6 py-3">
-                          SOURCE
-                        </th>
+                        <th scope="col" className="px-6 py-3"></th>
                         <th scope="col" className="px-6 py-3">
                           Prospect
                         </th>
                         <th scope="col" className="px-6 py-3">
-                          Leads
+                          Lead
                         </th>
                         <th scope="col" className="px-6 py-3">
                           Opportunity
@@ -111,6 +109,40 @@ export default function CompanyList({ segment, bt }) {
                         </th>
                       </tr>
                     </thead>
+
+                    <tbody>
+                      <Datalist
+                        datalist={scorecard}
+                        segmentselect={segmentSelect}
+                        businesstypeselect={businesstypeSelect}
+                        groupbyFilter="source"
+                        setOpen={setOpen}
+                        setCompanyList={setCompanyList}
+                      />
+                    </tbody>
+                  </table>
+                )}
+
+                {scorecard.length != 0 && (
+                  <table className="block lg:hidden w-3/5 text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead className="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                      <tr>
+                        <th scope="col" className="px-6 py-3"></th>
+                        <th scope="col" className="px-6 py-3">
+                          P
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          L
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          O
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          C
+                        </th>
+                      </tr>
+                    </thead>
+
                     <tbody>
                       <Datalist
                         datalist={scorecard}

@@ -1,6 +1,8 @@
 const InputSelectLabel = ({ label, value, onChange, data, placeholder }) => (
   <div className="bg-gray-50  font-mono px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-t border-gray-100">
-    <dt className="text-sm font-medium text-gray-500">{label}</dt>
+    <dt className="hidden lg:block text-sm font-medium text-gray-500">
+      {label}
+    </dt>
     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
       <select
         className="form-select appearance-none

@@ -45,8 +45,8 @@ export default function Entry({ companies }) {
     return (
       <div className="text-center">
         <HeaderBar email={session.user.email} image={session.user.image} />
-        <div className="lg:p-8 p-2 pt-8">
-          <div className="bg-white shadow sm:rounded-lg lg:w-2/5 w-full float-left text-left">
+        <div className="px-4 my-4">
+          <div className="bg-white shadow sm:rounded-lg w-full xl:w-3/5 float-left text-left">
             <CardHeader
               title="Create Interaction"
               subtitle="Log a new interaction"
@@ -57,6 +57,7 @@ export default function Entry({ companies }) {
               data={companies}
               value={companyList.name}
               min="0"
+              placeholder="Input Company Name"
               onChange={(e) => {
                 setCompanyList(e);
                 setActionFieldList([]);

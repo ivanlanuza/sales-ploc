@@ -33,13 +33,13 @@ const features = [
     href: "/insights/plocsnapshot",
   },
   {
-    name: "Historical PLOC by Lead Source",
+    name: "Historical PLOC by Source",
     description: "Understand which sources drive more return.",
     icon: SearchCircleIcon,
     href: "/insights/plocbysource",
   },
   {
-    name: "[COMING SOON!] Daily Summary",
+    name: "[SOON!] Daily Summary",
     description: "Review activity details per day.",
     icon: ClipboardListIcon,
     href: "#",
@@ -111,7 +111,7 @@ export default function Example() {
                       style={{ cursor: "pointer" }}
                     >
                       <dt>
-                        <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                        <div className="absolute flex items-center mt-1 justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
                           <feature.icon
                             className="h-6 w-6"
                             aria-hidden="true"
@@ -121,7 +121,7 @@ export default function Example() {
                           {feature.name}
                         </p>
                       </dt>
-                      <dd className="mt-1 ml-16 text-base text-gray-500">
+                      <dd className="mt-1 ml-16 text-sm lg:text-base text-gray-500">
                         {feature.description}
                       </dd>
                     </div>

@@ -39,8 +39,8 @@ export default function Entry({ company, interactions }) {
     return (
       <div className="text-center">
         <HeaderBar email={session.user.email} image={session.user.image} />
-        <div className="grid grid-cols-8 gap-4">
-          <div className="bg-white shadow col-span-3 overflow-hidden sm:rounded-lg float-left m-8 text-left">
+        <div className="md:flex p-4">
+          <div className="block bg-white w-full lg:w-3/5 text-left rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
             <CardHeader
               title="Company Information"
               subtitle="View Company Information"
@@ -60,7 +60,7 @@ export default function Entry({ company, interactions }) {
               <InputDataLabel label="Source" value={company.source.name} />
               <InputDataLabel label="Status" value={company.status.name} />
             </div>
-            <div className="p-4">
+            <div className="hidden lg:block p-4 mb-12">
               <ButtonPrimary
                 title="Edit Company"
                 href={`/company/` + company.id + `/edit`}
@@ -74,7 +74,8 @@ export default function Entry({ company, interactions }) {
               <ButtonCancel href="/company/list" title="back to list" />
             </div>
           </div>
-          <div className="bg-white shadow col-span-5 overflow-hidden sm:rounded-lg float-left m-8 text-left ">
+
+          <div className="ml-0 lg:ml-4 mt-4 lg:mt-0 font-mono text-left block w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
             <CardHeader title="Contact List" subtitle="View List of Contacts" />
             <div className="border-t border-gray-200">
               {company.ContactInfo.length !== 0 && (
@@ -87,11 +88,8 @@ export default function Entry({ company, interactions }) {
                       <th scope="col" className="px-6 py-3">
                         Role
                       </th>
-                      <th scope="col" className="px-6 py-3">
-                        Contact Number
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Email
+                      <th scope="col" className="hidden lg:block px-6 py-3">
+                        Contact Info
                       </th>
                     </tr>
                   </thead>
@@ -104,7 +102,7 @@ export default function Entry({ company, interactions }) {
                 </table>
               )}
             </div>
-            <div className="p-4 border-t border-gray-200">
+            <div className="p-4 border-t border-gray-200 mb-12">
               <ButtonPrimary
                 title="Add Contact"
                 href={`/company/` + company.id + `/contact/entry`}
@@ -115,9 +113,12 @@ export default function Entry({ company, interactions }) {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-8 gap-4">
-          <div className="bg-white shadow col-span-8 overflow-hidden sm:rounded-lg float-left m-8 text-left ">
-            <InteractionTable interactions={interactions} />
+        <div className="mt-4 w-full px-4">
+          <div className="bg-white shadow w-full overflow-hidden sm:rounded-lg float-left  text-left ">
+            <InteractionTable
+              interactions={interactions}
+              companyid={company.id}
+            />
           </div>
         </div>
         <SimpleModal

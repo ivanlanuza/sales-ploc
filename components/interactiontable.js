@@ -1,7 +1,7 @@
 import CardHeader from "./core/CardHeader";
 import Interactions from "./interactionlist";
 
-const InteractionTable = ({ interactions }) => {
+const InteractionTable = ({ interactions, companyid }) => {
   return (
     <div className="block bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
       <CardHeader
@@ -10,7 +10,7 @@ const InteractionTable = ({ interactions }) => {
       />
 
       {interactions.length !== 0 && (
-        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <table className="w-full font-mono text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" className="px-6 py-3">
@@ -19,13 +19,13 @@ const InteractionTable = ({ interactions }) => {
               <th scope="col" className="px-6 py-3">
                 Interaction Type
               </th>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="hidden lg:block px-6 py-3">
                 Action Data
               </th>
             </tr>
           </thead>
           <tbody>
-            <Interactions interactions={interactions} />
+            <Interactions interactions={interactions} companyid={companyid} />
           </tbody>
         </table>
       )}

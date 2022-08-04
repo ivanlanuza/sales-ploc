@@ -46,77 +46,79 @@ export default function CompanyEdit({ contact, companyid }) {
     return (
       <div className="text-center">
         <HeaderBar email={session.user.email} image={session.user.image} />
-        <div className="bg-white shadow overflow-hidden sm:rounded-lg float-left m-8 text-left w-2/5">
-          <CardHeader
-            title="Contact Information"
-            subtitle="Edit Contact Information"
-          />
-          <InputTextBoxLabel
-            type="text"
-            label="Contact Name"
-            id="contactname"
-            placeholder="Enter Contact Name"
-            value={contactName}
-            onChange={(e) => {
-              setContactName(e.target.value);
-            }}
-          />
-          <InputTextBoxLabel
-            type="text"
-            label="Role"
-            id="contactrole"
-            placeholder="Enter Contact Role"
-            value={contactRole}
-            onChange={(e) => {
-              setContactRole(e.target.value);
-            }}
-          />
-          <InputTextBoxLabel
-            type="text"
-            label="Mobile"
-            id="contactmobile"
-            placeholder="Enter Contact Mobile"
-            value={contactMobile}
-            onChange={(e) => {
-              setContactMobile(e.target.value);
-            }}
-          />
-          <InputTextBoxLabel
-            type="text"
-            label="Email"
-            id="contactemail"
-            placeholder="Enter Contact Email"
-            value={contactEmail}
-            onChange={(e) => {
-              setContactEmail(e.target.value);
-            }}
-          />
-          <InputTextAreaLabel
-            rows="5"
-            label="Notes"
-            id="contactnotes"
-            placeholder="Enter Notes"
-            value={contactNotes}
-            onChange={(e) => {
-              setContactNotes(e.target.value);
-            }}
-          />
-          <div className="p-4">
-            <ButtonPrimary
-              title="Save Contact Information"
-              href={`/company/` + companyid}
-              onClick={(e) => {
-                e.preventDefault();
-                handleSubmit();
+        <div className="px-4">
+          <div className="bg-white shadow overflow-hidden sm:rounded-lg my-4 float-left text-left w-full xl:w-3/5">
+            <CardHeader
+              title="Contact Information"
+              subtitle="Edit Contact Information"
+            />
+            <InputTextBoxLabel
+              type="text"
+              label="Contact Name"
+              id="contactname"
+              placeholder="Enter Contact Name"
+              value={contactName}
+              onChange={(e) => {
+                setContactName(e.target.value);
               }}
             />
-            <ButtonDelete
-              onClick={(e) => {
-                e.preventDefault();
-                setOpen(true);
+            <InputTextBoxLabel
+              type="text"
+              label="Role"
+              id="contactrole"
+              placeholder="Enter Contact Role"
+              value={contactRole}
+              onChange={(e) => {
+                setContactRole(e.target.value);
               }}
             />
-            <ButtonCancel href={`/company/` + companyid} title="cancel" />
+            <InputTextBoxLabel
+              type="text"
+              label="Mobile"
+              id="contactmobile"
+              placeholder="Enter Contact Mobile"
+              value={contactMobile}
+              onChange={(e) => {
+                setContactMobile(e.target.value);
+              }}
+            />
+            <InputTextBoxLabel
+              type="text"
+              label="Email"
+              id="contactemail"
+              placeholder="Enter Contact Email"
+              value={contactEmail}
+              onChange={(e) => {
+                setContactEmail(e.target.value);
+              }}
+            />
+            <InputTextAreaLabel
+              rows="5"
+              label="Notes"
+              id="contactnotes"
+              placeholder="Enter Notes"
+              value={contactNotes}
+              onChange={(e) => {
+                setContactNotes(e.target.value);
+              }}
+            />
+            <div className="p-4">
+              <ButtonPrimary
+                title="Save Contact Information"
+                href={`/company/` + companyid}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleSubmit();
+                }}
+              />
+              <ButtonDelete
+                onClick={(e) => {
+                  e.preventDefault();
+                  setOpen(true);
+                }}
+              />
+              <ButtonCancel href={`/company/` + companyid} title="cancel" />
+            </div>
           </div>
         </div>
         <SimpleModal

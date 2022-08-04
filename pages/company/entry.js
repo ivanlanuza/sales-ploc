@@ -44,110 +44,112 @@ export default function CompanyPage({ segment, source, bt }) {
       <div className="w-full">
         <div>
           <HeaderBar email={session.user.email} image={session.user.image} />
-          <div className="bg-white shadow overflow-hidden sm:rounded-lg float-left m-8 text-left w-2/5">
-            <CardHeader
-              title="Create Company"
-              subtitle="Add a new company record"
-            />
-            <InputTextBoxLabel
-              type="text"
-              label="Company Name"
-              id="companyname"
-              placeholder="Enter Company Name"
-              value={companyName}
-              onChange={(e) => {
-                setCompanyName(e.target.value);
-                setButtonActive(false);
-                setSuccessFlag(false);
-              }}
-            />
-            <InputTextBoxLabel
-              type="text"
-              label="L.E. Name"
-              id="lename"
-              placeholder="Enter Legal Entity Name"
-              value={otherName}
-              onChange={(e) => {
-                setOtherName(e.target.value);
-                setButtonActive(false);
-                setSuccessFlag(false);
-              }}
-            />
-            <InputTextBoxLabel
-              type="text"
-              label="Business Address"
-              id="address"
-              placeholder="Enter Business Address"
-              value={address}
-              onChange={(e) => {
-                setAddress(e.target.value);
-                setButtonActive(false);
-                setSuccessFlag(false);
-              }}
-            />
-
-            <InputSelectLabel
-              label="Segment"
-              value={segmentSelect}
-              data={segment}
-              placeholder="Select a segment"
-              onChange={(e) => {
-                setSegmentSelect(e.target.value);
-                setButtonActive(false);
-                setSuccessFlag(false);
-
-                setBusinessTypeList(
-                  bt.filter(function (list) {
-                    return list.segmentId === e.target.value;
-                  })
-                );
-              }}
-            />
-            <InputSelectLabel
-              label="Business Type"
-              value={businesstypeSelect}
-              data={businesstypelist}
-              placeholder="Select a business type"
-              onChange={(e) => {
-                setBusinessTypeSelect(e.target.value);
-                setButtonActive(false);
-                setSuccessFlag(false);
-              }}
-            />
-            <InputSelectLabel
-              label="Source"
-              value={sourceSelect}
-              data={source}
-              placeholder="Select a source"
-              onChange={(e) => {
-                setSourceSelect(e.target.value);
-                setButtonActive(false);
-                setSuccessFlag(false);
-              }}
-            />
-            <InputDatePickerLabel
-              selected={actionDate}
-              onChange={(date) => setActionDate(date)}
-              label="Registration Date"
-            />
-            <div className="p-4">
-              <ButtonPrimary
-                title="Create New Company"
-                disabled={buttonactive}
-                href=""
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleSubmit();
+          <div className="px-4">
+            <div className="bg-white shadow overflow-hidden sm:rounded-lg my-4 float-left text-left w-full xl:w-3/5">
+              <CardHeader
+                title="Create Company"
+                subtitle="Add a new company record"
+              />
+              <InputTextBoxLabel
+                type="text"
+                label="Company Name"
+                id="companyname"
+                placeholder="Enter Company Name"
+                value={companyName}
+                onChange={(e) => {
+                  setCompanyName(e.target.value);
+                  setButtonActive(false);
+                  setSuccessFlag(false);
                 }}
               />
-            </div>
-            {validationerror && (
-              <MessageError label="Please fill-up all fields." />
-            )}
+              <InputTextBoxLabel
+                type="text"
+                label="L.E. Name"
+                id="lename"
+                placeholder="Enter Legal Entity Name"
+                value={otherName}
+                onChange={(e) => {
+                  setOtherName(e.target.value);
+                  setButtonActive(false);
+                  setSuccessFlag(false);
+                }}
+              />
+              <InputTextBoxLabel
+                type="text"
+                label="Business Address"
+                id="address"
+                placeholder="Enter Business Address"
+                value={address}
+                onChange={(e) => {
+                  setAddress(e.target.value);
+                  setButtonActive(false);
+                  setSuccessFlag(false);
+                }}
+              />
 
-            {successflag && (
-              <MessageSuccess label="New Company record created!" />
-            )}
+              <InputSelectLabel
+                label="Segment"
+                value={segmentSelect}
+                data={segment}
+                placeholder="Select a segment"
+                onChange={(e) => {
+                  setSegmentSelect(e.target.value);
+                  setButtonActive(false);
+                  setSuccessFlag(false);
+
+                  setBusinessTypeList(
+                    bt.filter(function (list) {
+                      return list.segmentId === e.target.value;
+                    })
+                  );
+                }}
+              />
+              <InputSelectLabel
+                label="Business Type"
+                value={businesstypeSelect}
+                data={businesstypelist}
+                placeholder="Select a business type"
+                onChange={(e) => {
+                  setBusinessTypeSelect(e.target.value);
+                  setButtonActive(false);
+                  setSuccessFlag(false);
+                }}
+              />
+              <InputSelectLabel
+                label="Source"
+                value={sourceSelect}
+                data={source}
+                placeholder="Select a source"
+                onChange={(e) => {
+                  setSourceSelect(e.target.value);
+                  setButtonActive(false);
+                  setSuccessFlag(false);
+                }}
+              />
+              <InputDatePickerLabel
+                selected={actionDate}
+                onChange={(date) => setActionDate(date)}
+                label="Registration Date"
+              />
+              <div className="p-4">
+                <ButtonPrimary
+                  title="Create New Company"
+                  disabled={buttonactive}
+                  href=""
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleSubmit();
+                  }}
+                />
+              </div>
+              {validationerror && (
+                <MessageError label="Please fill-up all fields." />
+              )}
+
+              {successflag && (
+                <MessageSuccess label="New Company record created!" />
+              )}
+            </div>
           </div>
         </div>
       </div>

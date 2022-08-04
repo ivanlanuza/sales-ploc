@@ -2,7 +2,14 @@ import { Fragment, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import { SelectorIcon } from "@heroicons/react/solid";
 
-export default function ComboBox({ label, data, value, onChange, min }) {
+export default function ComboBox({
+  label,
+  data,
+  value,
+  onChange,
+  min,
+  placeholder,
+}) {
   const [query, setQuery] = useState("");
 
   const filteredEntry =
@@ -14,8 +21,10 @@ export default function ComboBox({ label, data, value, onChange, min }) {
 
   return (
     <div className="bg-gray-50  font-mono z-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-t border-gray-100">
-      <dt className="text-sm font-medium text-gray-500">{label}</dt>
-      <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+      <div className="hidden lg:block text-sm font-medium text-gray-500">
+        {label}
+      </div>
+      <div className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
         <Combobox value={value} onChange={onChange}>
           <div className="relative w-full  text-left sm:text-sm p-0">
             <Combobox.Input
@@ -24,6 +33,7 @@ export default function ComboBox({ label, data, value, onChange, min }) {
               }}
               className="font-mono w-full rounded -mt-2 -mb-3 border border-solid border-gray-300 py-2 pl-3 pr-10 text-sm leading-5 text-gray-900"
               autoComplete="off"
+              placeholder={placeholder}
             />
             <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2 ">
               <SelectorIcon
@@ -59,7 +69,7 @@ export default function ComboBox({ label, data, value, onChange, min }) {
             </Combobox.Options>
           )}
         </Combobox>
-      </dd>
+      </div>
     </div>
   );
 }

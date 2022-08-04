@@ -52,8 +52,8 @@ export default function CompanyList({}) {
         <div>
           <HeaderBar email={session.user.email} image={session.user.image} />
         </div>
-        <div className="grid grid-cols-8 gap-4">
-          <div className="justify-center col-span-2 m-0 mb-2 py-8 px-2 place-content-center">
+        <div className="md:flex p-4 ">
+          <div className="">
             <div className="block bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
               <CardHeader
                 title="Filters"
@@ -79,16 +79,16 @@ export default function CompanyList({}) {
               </div>
             </div>
           </div>
-          <div className="justify-center col-span-6 py-8 px-2 m-0 mb-6 place-content-centter">
-            <div className="p-0 pr-2 place-content-center ">
-              <div className="block bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+          <div className="mt-4 lg:mt-0 ml-0 lg:ml-4 w-full">
+            <div className="p-0 w-full">
+              <div className="block w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <CardHeader
                   title="PLOC Current Snapshot"
                   subtitle="View the current PLOC pipeline."
                 />
 
                 {scorecard.length != 0 && (
-                  <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                  <table className="hidden lg:block w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                       <tr>
                         <th scope="col" className="px-6 py-3"></th>
@@ -103,6 +103,36 @@ export default function CompanyList({}) {
                         </th>
                         <th scope="col" className="px-6 py-3 text-center">
                           Client
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <Datalist
+                        datalist={scorecard}
+                        groupbyFilter={filterselect}
+                        setOpen={setOpen}
+                        setCompanyList={setCompanyList}
+                      />
+                    </tbody>
+                  </table>
+                )}
+
+                {scorecard.length != 0 && (
+                  <table className="block lg:hidden w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead className="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                      <tr>
+                        <th scope="col" className="px-6 py-3"></th>
+                        <th scope="col" className="px-6 py-3 text-center">
+                          P
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-center">
+                          L
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-center">
+                          O
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-center">
+                          C
                         </th>
                       </tr>
                     </thead>

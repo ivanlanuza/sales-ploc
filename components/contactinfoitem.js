@@ -15,8 +15,10 @@ const ContactInfo = ({ contactinfo, companyid }) => {
         </Link>
       </td>
       <td className="px-6 py-4 text-xs">{contactinfo.role}</td>
-      <td className="px-6 py-4 text-xs">{contactinfo.mobile}</td>
-      <td className="px-6 py-4 text-xs">{contactinfo.email}</td>
+      <td className="hidden lg:block px-6 py-0 pt-2 text-xs">
+        {contactinfo.mobile}
+      </td>
+      <td className="hidden lg:block px-6 py-0 text-xs">{contactinfo.email}</td>
     </tr>
   );
 };

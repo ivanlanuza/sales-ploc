@@ -7,7 +7,7 @@ export default function BannerHero({ subtitle, title, description }) {
       <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
         {title}
       </p>
-      <p className="mt-4 max-w-2xl text-md text-gray-500 lg:mx-auto">
+      <p className="hidden lg:block mt-4 max-w-2xl text-md text-gray-500 lg:mx-auto">
         {description}
       </p>
     </div>
