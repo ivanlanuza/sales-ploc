@@ -2,7 +2,7 @@ import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const InputDatePickerLabel = ({ selected, label, onChange }) => (
-  <div className="border-t border-gray-100 font-mono">
+  <div className="border-t border-gray-100 font-sans">
     <dl>
       <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt className="hidden lg:block text-sm font-medium text-gray-500">

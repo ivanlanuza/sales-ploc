@@ -1,6 +1,6 @@
 const MessageError = ({ label }) => (
   <div
-    className="bg-red-100 font-mono rounded-lg rounded-t-none py-5 px-6 text-base text-red-700 inline-flex items-center w-full mt-0"
+    className="bg-red-100 font-sans rounded-lg rounded-t-none py-5 px-6 text-base text-red-700 inline-flex items-center w-full mt-0"
     role="alert"
   >
     <svg

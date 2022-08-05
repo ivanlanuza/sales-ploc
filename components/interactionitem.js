@@ -5,7 +5,7 @@ import { PencilIcon } from "@heroicons/react/outline";
 const Interaction = ({ interaction, companyid }) => {
   const iDate = new Date(interaction.businessDate);
   return (
-    <tr className="bg-white border-t dark:bg-gray-800 dark:border-gray-700 text-sm font-mono">
+    <tr className="bg-white border-t dark:bg-gray-800 dark:border-gray-700 text-sm font-sans">
       <td className="px-6 py-2">
         <div className="font-bold">
           <Link

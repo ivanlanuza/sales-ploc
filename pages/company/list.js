@@ -120,7 +120,7 @@ export default function CompanyList({ segment, source, bt, statuslist }) {
                 />
 
                 {companies.length !== 0 && (
-                  <table className="w-full text-sm font-mono text-left text-gray-500 dark:text-gray-400">
+                  <table className="w-full text-sm font-sans text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                       <tr>
                         <th scope="col" className="px-6 py-3">

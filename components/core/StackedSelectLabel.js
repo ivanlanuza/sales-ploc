@@ -1,5 +1,5 @@
 const StackedSelectLabel = ({ label, value, onChange, data, placeholder }) => (
-  <div className="justify-center p-0 m-0 mb-0 font-mono">
+  <div className="justify-center p-0 m-0 mb-0 font-sans">
     <span className="ml-1 text-xs text-gray-400 font-light ">{label}</span>
     <div className="mb-2 xl:w-100">
       <select

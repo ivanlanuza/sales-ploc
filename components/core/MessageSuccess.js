@@ -1,6 +1,6 @@
 const MessageSuccess = ({ label }) => (
   <div
-    className="mt-0 bg-green-100 font-mono rounded-lg py-5 px-6 mb-0 text-base text-green-700 inline-flex items-center w-full"
+    className="mt-0 bg-green-100 font-sans rounded-lg py-5 px-6 mb-0 text-base text-green-700 inline-flex items-center w-full"
     role="alert"
   >
     <svg

@@ -6,7 +6,7 @@ const StackedTextBoxLabel = ({
   type,
   onChange,
 }) => (
-  <div className="justify-center p-0 m-0 mb-0 font-mono">
+  <div className="justify-center p-0 m-0 mb-0 font-sans">
     <span className="ml-1 text-xs text-gray-400 font-light ">{label}</span>
     <input
       type={type}

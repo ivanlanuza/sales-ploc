@@ -42,7 +42,7 @@ function classNames(...classes) {
 
 export default function HeaderBar({ email, image }) {
   return (
-    <div className="flex py-4 font-mono border-b-2 border-gray-100">
+    <div className="flex py-4 font-sans border-b-2 border-gray-100">
       <div className="flex-none">
         <Link
           href="/interaction/create"

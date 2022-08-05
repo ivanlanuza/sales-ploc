@@ -1,5 +1,5 @@
 const InputSelectLabel = ({ label, value, onChange, data, placeholder }) => (
-  <div className="bg-gray-50  font-mono px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-t border-gray-100">
+  <div className="bg-gray-50  font-sans px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-t border-gray-100">
     <dt className="hidden lg:block text-sm font-medium text-gray-500">
       {label}
     </dt>

@@ -39,7 +39,7 @@ const features = [
     href: "/insights/plocbysource",
   },
   {
-    name: "[SOON!] Daily Summary",
+    name: "[SOON!] Timeline Update",
     description: "Review activity details per day.",
     icon: ClipboardListIcon,
     href: "#",
@@ -92,7 +92,7 @@ export default function Example() {
 
   if (status === "authenticated" && session.user.auth) {
     return (
-      <div className="w-full font-mono">
+      <div className="w-full font-sans">
         <HeaderBar email={session.user.email} image={session.user.image} />
         <div className="py-12 bg-white pb-18">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -117,7 +117,7 @@ export default function Example() {
                             aria-hidden="true"
                           />
                         </div>
-                        <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
+                        <p className="ml-16 text-lg leading-6 font-bold text-gray-900">
                           {feature.name}
                         </p>
                       </dt>

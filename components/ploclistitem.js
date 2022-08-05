@@ -43,7 +43,7 @@ const Data = ({
   }
 
   return (
-    <tr className="bg-white border-t dark:bg-gray-800 dark:border-gray-700 text-xs font-mono">
+    <tr className="bg-white border-t dark:bg-gray-800 dark:border-gray-700 text-xs font-sans">
       <td className="px-6 py-4">{data.name}</td>
       <td className="px-6 py-4 text-center">
         <span

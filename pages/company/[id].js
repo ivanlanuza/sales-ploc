@@ -75,7 +75,7 @@ export default function Entry({ company, interactions }) {
             </div>
           </div>
 
-          <div className="ml-0 lg:ml-4 mt-4 lg:mt-0 font-mono text-left block w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+          <div className="ml-0 lg:ml-4 mt-4 lg:mt-0 font-sans text-left block w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
             <CardHeader title="Contact List" subtitle="View List of Contacts" />
             <div className="border-t border-gray-200">
               {company.ContactInfo.length !== 0 && (

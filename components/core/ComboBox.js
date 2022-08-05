@@ -20,7 +20,7 @@ export default function ComboBox({
         });
 
   return (
-    <div className="bg-gray-50  font-mono z-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-t border-gray-100">
+    <div className="bg-gray-50  font-sans z-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-t border-gray-100">
       <div className="hidden lg:block text-sm font-medium text-gray-500">
         {label}
       </div>
@@ -31,7 +31,7 @@ export default function ComboBox({
               onChange={(event) => {
                 setQuery(event.target.value);
               }}
-              className="font-mono w-full rounded -mt-2 -mb-3 border border-solid border-gray-300 py-2 pl-3 pr-10 text-sm leading-5 text-gray-900"
+              className="font-sans w-full rounded -mt-2 -mb-3 border border-solid border-gray-300 py-2 pl-3 pr-10 text-sm leading-5 text-gray-900"
               autoComplete="off"
               placeholder={placeholder}
             />
@@ -57,7 +57,7 @@ export default function ComboBox({
                     key={entry.id}
                     value={entry}
                     className={({ active }) =>
-                      `font-mono relative cursor-default select-none px-4 py-2 w-full ${
+                      `font-sans relative cursor-default select-none px-4 py-2 w-full ${
                         active ? "bg-indigo-400 text-white" : "text-gray-900"
                       }`
                     }

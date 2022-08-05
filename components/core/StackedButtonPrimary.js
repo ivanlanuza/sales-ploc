@@ -6,7 +6,7 @@ const StackedButtonPrimary = ({ href, title, onClick, disabled }) => (
       type="submit"
       disabled={disabled}
       className="
-      font-mono
+      font-sans
         w-full
         px-6
         py-3.5

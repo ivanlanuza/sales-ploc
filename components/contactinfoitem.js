@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const ContactInfo = ({ contactinfo, companyid }) => {
   return (
-    <tr className="bg-white border-t dark:bg-gray-800 dark:border-gray-700 font-mono">
+    <tr className="bg-white border-t dark:bg-gray-800 dark:border-gray-700 font-sans">
       <td className="px-6 py-4 text-xs">
         <Link
           href={

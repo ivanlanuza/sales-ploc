@@ -1,12 +1,12 @@
 import Link from "next/link";
 
 const ButtonPrimary = ({ href, title, onClick, disabled }) => (
-  <Link href={href} className="font-mono">
+  <Link href={href} className="font-sans">
     <button
       type="submit"
       disabled={disabled}
       className="  
-      font-mono
+      font-sans
       px-6
       py-2
       h-12

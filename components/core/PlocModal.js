@@ -16,7 +16,7 @@ const PlocModal = ({
   <Transition.Root show={show} as={Fragment}>
     <Dialog
       as="div"
-      className="relative z-10  font-mono"
+      className="relative z-10  font-sans"
       initialFocus={ref}
       onClose={onClose}
     >
