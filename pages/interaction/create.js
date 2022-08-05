@@ -187,13 +187,19 @@ export default function Entry({ companies }) {
 
     if (actionFieldList && company.id && actionType && session.user.email) {
       //create api fetch call with combined write
+      var notime_actionDate = new Date(
+        actionDate.getFullYear(),
+        actionDate.getMonth(),
+        actionDate.getDate()
+      );
+
       await fetch("/api/interactioncreate", {
         body: JSON.stringify({
           companyId: company.id,
           actiontypeId: actionType,
           actionData: dataArray,
           createdBy: session.user.id,
-          businessDate: actionDate,
+          businessDate: notime_actionDate,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -208,7 +214,7 @@ export default function Entry({ companies }) {
             companyid: company.id,
             nextstatus: nextStatus,
             createdBy: session.user.id,
-            businessDate: actionDate,
+            businessDate: notime_actionDate,
           }),
           headers: {
             "Content-Type": "application/json",

@@ -175,6 +175,11 @@ export default function CompanyPage({ segment, source, bt }) {
       errorflag = true;
       setValidationError(true);
     } else {
+      var notime_actionDate = new Date(
+        actionDate.getFullYear(),
+        actionDate.getMonth(),
+        actionDate.getDate()
+      );
       await fetch("/api/company", {
         body: JSON.stringify({
           companyName,
@@ -183,7 +188,7 @@ export default function CompanyPage({ segment, source, bt }) {
           businesstypeSelect,
           sourceSelect,
           createdBy: session.user.id,
-          actionDate,
+          notime_actionDate,
           address,
         }),
         headers: {

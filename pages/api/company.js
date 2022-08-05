@@ -37,7 +37,7 @@ export default async function handler(req, res) {
         .status(400)
         .json({ message: "Required parameter type missing" });
 
-    if (!req.body.actionDate)
+    if (!req.body.notime_actionDate)
       return res
         .status(400)
         .json({ message: "Required parameter type missing" });
@@ -56,7 +56,7 @@ export default async function handler(req, res) {
           create: {
             createdBy: req.body.createdBy,
             actiontypeId: defaultNewProspectSetting,
-            businessDate: req.body.actionDate,
+            businessDate: req.body.notime_actionDate,
           },
         },
       },
