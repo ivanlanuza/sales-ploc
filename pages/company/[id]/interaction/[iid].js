@@ -84,10 +84,15 @@ export default function InteractionEdit({ interaction, companyid }) {
       errorflag = true;
       setValidationError(true);
     } else {
+      var notime_actionDate = new Date(
+        actionDate.getFullYear(),
+        actionDate.getMonth(),
+        actionDate.getDate()
+      );
       await fetch("/api/editinteraction", {
         body: JSON.stringify({
           id: interaction.id,
-          businessDate: actionDate,
+          businessDate: notime_actionDate,
         }),
         headers: {
           "Content-Type": "application/json",

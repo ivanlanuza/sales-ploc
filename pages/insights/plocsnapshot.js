@@ -53,7 +53,7 @@ export default function CompanyList({}) {
           <HeaderBar email={session.user.email} image={session.user.image} />
         </div>
         <div className="md:flex p-4 ">
-          <div className="">
+          <div className="w-full xl:w-2/6">
             <div className="block bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
               <CardHeader
                 title="Filters"

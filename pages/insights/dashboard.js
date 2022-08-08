@@ -34,17 +34,24 @@ const features = [
   },
   {
     name: "Historical PLOC by Source",
-    description: "Understand which sources drive more return.",
+    description: "Know the sources that drive most return.",
     icon: SearchCircleIcon,
     href: "/insights/plocbysource",
   },
   {
+    name: "Historical PLOC Conversion Rates",
+    description: "View conversion and closure rates.",
+    icon: ClipboardListIcon,
+    href: "/insights/plocconversion",
+  },
+
+  /*{
     name: "[SOON!] Timeline Update",
     description: "Review activity details per day.",
     icon: ClipboardListIcon,
     href: "#",
   },
-  /*{
+  {
     name: "[COMING SOON!] Summarized PLOC Worksheet",
     description: "Have a full view of your prospect base.",
     icon: TemplateIcon,

@@ -1,27 +1,41 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import prisma from "lib/prisma";
 import HeaderBar from "components/headerbar";
 import PlocModal from "components/core/PlocModal";
-
-import { getSegment, getBusinessType } from "lib/data";
 
 import StackedSelectLabel from "components/core/StackedSelectLabel";
 import StackedButtonPrimary from "components/core/StackedButtonPrimary";
 import CardHeader from "components/core/CardHeader";
-import Datalist from "components/ploclist";
+import Datalist from "components/historicalploclist";
 
-export default function CompanyList({ segment, bt }) {
+const features = [
+  {
+    id: "alldata",
+    name: "All Data",
+  },
+  {
+    id: "segment",
+    name: "Group By Segment",
+  },
+  {
+    id: "bt",
+    name: "Group By Business Type",
+  },
+  {
+    id: "user",
+    name: "Group By User",
+  },
+];
+export default function CompanyList({}) {
   const { data: session, status } = useSession();
   const router = useRouter();
 
   const [open, setOpen] = useState(false);
   const [companylist, setCompanyList] = useState("");
 
-  const [segmentSelect, setSegmentSelect] = useState("");
-  const [businesstypeSelect, setBusinessTypeSelect] = useState("");
-  const [businesstypelist, setBusinessTypeList] = useState(bt);
+  const [filterselect, setFilterSelect] = useState("alldata");
+  const [filterlist, setFilterList] = useState(features);
   const [scorecard, setScorecard] = useState("");
 
   if (!session) {
@@ -47,27 +61,11 @@ export default function CompanyList({ segment, bt }) {
               />
               <div className="px-4 pb-4 sm:px-6 border-b border-gray-200">
                 <StackedSelectLabel
-                  label="Segment"
-                  value={segmentSelect}
-                  data={segment}
-                  placeholder="All Segments"
+                  label="Group By"
+                  value={filterselect}
+                  data={filterlist}
                   onChange={(e) => {
-                    setSegmentSelect(e.target.value);
-                    setBusinessTypeList(
-                      bt.filter(function (list) {
-                        return list.segmentId === e.target.value;
-                      })
-                    );
-                    setBusinessTypeSelect("");
-                  }}
-                />
-                <StackedSelectLabel
-                  label="Business Type"
-                  value={businesstypeSelect}
-                  data={businesstypelist}
-                  placeholder="All Business Types"
-                  onChange={(e) => {
-                    setBusinessTypeSelect(e.target.value);
+                    setFilterSelect(e.target.value);
                   }}
                 />
                 <StackedButtonPrimary
@@ -75,7 +73,6 @@ export default function CompanyList({ segment, bt }) {
                   title="Filter"
                   onClick={(e) => {
                     e.preventDefault();
-
                     handleSubmit();
                   }}
                 />
@@ -86,36 +83,42 @@ export default function CompanyList({ segment, bt }) {
             <div className="p-0 w-full">
               <div className="block w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <CardHeader
-                  title="Historical PLOC by Source"
-                  subtitle="Understand which sources drive more return."
+                  title="Historical PLOC Conversion Rates"
+                  subtitle="View conversion and closure rates."
                 />
 
                 {scorecard.length != 0 && (
-                  <table className="hidden lg:block w-full font-sans text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead className="text-sm w-full text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <table className="hidden lg:block w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead className="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                       <tr>
                         <th scope="col" className="px-6 py-3"></th>
-                        <th scope="col" className="px-6 py-3">
+                        <th scope="col" className="px-6 py-3 text-center">
                           Prospect
                         </th>
-                        <th scope="col" className="px-6 py-3">
-                          Lead
+                        <th scope="col" className="px-6 py-3 text-center">
+                          Leads{" "}
+                          <span className="text-xs text-gray-400 font-light">
+                            (Conv. %)
+                          </span>
                         </th>
-                        <th scope="col" className="px-6 py-3">
-                          Opportunity
+                        <th scope="col" className="px-6 py-3 text-center">
+                          Opportunity{" "}
+                          <span className="text-xs text-gray-400 font-light">
+                            (Conv. %)
+                          </span>
                         </th>
-                        <th scope="col" className="px-6 py-3">
-                          Client
+                        <th scope="col" className="px-6 py-3 text-center">
+                          Client{" "}
+                          <span className="text-xs text-gray-400 font-light">
+                            (Closure %)
+                          </span>
                         </th>
                       </tr>
                     </thead>
-
                     <tbody>
                       <Datalist
                         datalist={scorecard}
-                        segmentselect={segmentSelect}
-                        businesstypeselect={businesstypeSelect}
-                        groupbyFilter="source"
+                        groupbyFilter={filterselect}
                         setOpen={setOpen}
                         setCompanyList={setCompanyList}
                       />
@@ -124,31 +127,28 @@ export default function CompanyList({ segment, bt }) {
                 )}
 
                 {scorecard.length != 0 && (
-                  <table className="block lg:hidden w-3/5 text-sm text-left text-gray-500 dark:text-gray-400">
+                  <table className="block lg:hidden w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                       <tr>
                         <th scope="col" className="px-6 py-3"></th>
-                        <th scope="col" className="px-6 py-3">
+                        <th scope="col" className="px-6 py-3 text-center">
                           P
                         </th>
-                        <th scope="col" className="px-6 py-3">
-                          L
+                        <th scope="col" className="px-6 py-3 text-center">
+                          L <span className="text-xs text-gray-400">(%)</span>
                         </th>
-                        <th scope="col" className="px-6 py-3">
-                          O
+                        <th scope="col" className="px-6 py-3 text-center">
+                          O <span className="text-xs text-gray-400">(%)</span>
                         </th>
-                        <th scope="col" className="px-6 py-3">
-                          C
+                        <th scope="col" className="px-6 py-3 text-center">
+                          C <span className="text-xs text-gray-400">(%)</span>
                         </th>
                       </tr>
                     </thead>
-
                     <tbody>
                       <Datalist
                         datalist={scorecard}
-                        segmentselect={segmentSelect}
-                        businesstypeselect={businesstypeSelect}
-                        groupbyFilter="source"
+                        groupbyFilter={filterselect}
                         setOpen={setOpen}
                         setCompanyList={setCompanyList}
                       />
@@ -176,10 +176,9 @@ export default function CompanyList({ segment, bt }) {
 
   async function handleSubmit() {
     fetch(
-      "/api/insights/plocbysource?" +
+      "/api/insights/plocconversion?" +
         new URLSearchParams({
-          segmentId: segmentSelect,
-          businesstypeId: businesstypeSelect,
+          filterselect: filterselect,
         }),
       {
         headers: {
@@ -193,19 +192,4 @@ export default function CompanyList({ segment, bt }) {
         setScorecard(data);
       });
   }
-}
-
-export async function getServerSideProps(context) {
-  let segment = await getSegment(prisma);
-  segment = JSON.parse(JSON.stringify(segment));
-
-  let bt = await getBusinessType(prisma);
-  bt = JSON.parse(JSON.stringify(bt));
-
-  return {
-    props: {
-      segment,
-      bt,
-    },
-  };
 }
