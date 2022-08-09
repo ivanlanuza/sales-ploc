@@ -19,7 +19,8 @@ export default async function handler(req, res) {
     FROM Company
     INNER JOIN Action ON Company.id = Action.companyId
     WHERE Company.isActive = true 
-    AND Action.actiontypeId = ${req.query.actiontypeId}`;
+    AND Action.actiontypeId = ${req.query.actiontypeId}
+    ORDER BY Company.name`;
 
     res.status(200).json(data);
 
@@ -33,7 +34,8 @@ export default async function handler(req, res) {
     INNER JOIN Action ON Company.id = Action.companyId
     WHERE Company.isActive = true 
     AND Action.actiontypeId = ${req.query.actiontypeId}
-    AND Company.segmentId = ${req.query.id}`;
+    AND Company.segmentId = ${req.query.id}
+    ORDER BY Company.name`;
 
     res.status(200).json(data);
 
@@ -47,7 +49,8 @@ export default async function handler(req, res) {
     INNER JOIN Action ON Company.id = Action.companyId
     WHERE Company.isActive = true 
     AND Action.actiontypeId = ${req.query.actiontypeId}
-    AND Company.businesstypeId = ${req.query.id}`;
+    AND Company.businesstypeId = ${req.query.id}
+    ORDER BY Company.name`;
 
     res.status(200).json(data);
 
@@ -61,7 +64,8 @@ export default async function handler(req, res) {
     INNER JOIN Action ON Company.id = Action.companyId
     WHERE Company.isActive = true 
     AND Action.actiontypeId = ${req.query.actiontypeId}
-    AND Company.userId = ${req.query.id}`;
+    AND Company.userId = ${req.query.id}
+    ORDER BY Company.name`;
 
     res.status(200).json(data);
 
