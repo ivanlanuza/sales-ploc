@@ -116,7 +116,7 @@ export default function CompanyList({ segment, source, bt, statuslist }) {
               <div className="block w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <CardHeader
                   title="Company Directory"
-                  subtitle={companies.length + ` found`}
+                  subtitle={companies.length + ` companies found`}
                 />
 
                 {companies.length !== 0 && (
