@@ -25,7 +25,7 @@ const StackedSelectLabel = ({ label, value, onChange, data, placeholder }) => (
         {placeholder && <option value="">{placeholder}</option>}
         {data.map((dataitem) => (
           <option key={dataitem.id} value={dataitem.id}>
-            {dataitem.name}
+            {dataitem.name || dataitem.email}
           </option>
         ))}
       </select>

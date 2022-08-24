@@ -71,4 +71,38 @@ export default async function handler(req, res) {
 
     return;
   }
+
+  //For PLOC Monthly Scorecard where it can be all users or specific users
+  if (req.method === "GET") {
+    if (mygrouping === "") {
+      const data =
+        await prisma.$queryRaw`SELECT DISTINCT(Company.name), Company.id
+        FROM Company
+        INNER JOIN Action ON Company.id = Action.companyId
+        WHERE Company.isActive = true 
+        AND Action.actiontypeId = ${req.query.actiontypeId}
+        AND MONTH(Action.businessDate) = ${req.query.id.split("-")[1]}
+        AND YEAR(Action.businessDate) = ${req.query.id.split("-")[0]}
+        ORDER BY Company.name`;
+
+      res.status(200).json(data);
+
+      return;
+    } else {
+      const data =
+        await prisma.$queryRaw`SELECT DISTINCT(Company.name), Company.id
+        FROM Company
+        INNER JOIN Action ON Company.id = Action.companyId
+        WHERE Company.isActive = true 
+        AND Action.actiontypeId = ${req.query.actiontypeId}
+        AND Company.userId = ${req.query.groupbyfilter}
+        AND MONTH(Action.businessDate) = ${req.query.id.split("-")[1]}
+        AND YEAR(Action.businessDate) = ${req.query.id.split("-")[0]}
+        ORDER BY Company.name`;
+
+      res.status(200).json(data);
+
+      return;
+    }
+  }
 }

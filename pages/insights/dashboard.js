@@ -44,6 +44,12 @@ const features = [
     icon: ClipboardListIcon,
     href: "/insights/plocconversion",
   },
+  {
+    name: "[NEW] PLOC Monthly Scorecard",
+    description: "View monthly PLOC scores.",
+    icon: CalendarIcon,
+    href: "/insights/plocmonthly",
+  },
 
   /*{
     name: "[SOON!] Timeline Update",
