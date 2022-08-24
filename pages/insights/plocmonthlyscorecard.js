@@ -11,7 +11,7 @@ import StackedButtonPrimary from "components/core/StackedButtonPrimary";
 import CardHeader from "components/core/CardHeader";
 import Datalist from "components/historicalploclist";
 
-export default function PlocMonthly({ users }) {
+export default function PlocMonthlyScorecard({ users }) {
   const { data: session, status } = useSession();
   const router = useRouter();
 

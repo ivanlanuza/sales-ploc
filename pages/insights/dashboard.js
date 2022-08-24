@@ -45,10 +45,10 @@ const features = [
     href: "/insights/plocconversion",
   },
   {
-    name: "[NEW] PLOC Monthly Scorecard",
+    name: "PLOC Monthly Scorecard",
     description: "View monthly PLOC scores.",
     icon: CalendarIcon,
-    href: "/insights/plocmonthlyscore",
+    href: "/insights/plocmonthlyscorecard",
   },
 
   /*{
