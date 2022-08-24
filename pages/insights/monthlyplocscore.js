@@ -11,7 +11,7 @@ import StackedButtonPrimary from "components/core/StackedButtonPrimary";
 import CardHeader from "components/core/CardHeader";
 import Datalist from "components/historicalploclist";
 
-export default function PlocMonthlyScorecard({ users }) {
+export default function PlocMonthlyScorecard({ userlist }) {
   const { data: session, status } = useSession();
   const router = useRouter();
 
@@ -19,7 +19,7 @@ export default function PlocMonthlyScorecard({ users }) {
   const [companylist, setCompanyList] = useState("");
 
   const [filterselect, setFilterSelect] = useState("");
-  const [filterlist, setFilterList] = useState(users);
+  const [filterlist, setFilterList] = useState(userlist);
   const [scorecard, setScorecard] = useState("");
 
   if (!session) {
@@ -180,12 +180,12 @@ export default function PlocMonthlyScorecard({ users }) {
 }
 
 export async function getServerSideProps(context) {
-  let users = await getUsers(prisma);
-  users = JSON.parse(JSON.stringify(users));
+  let userlist = await getUsers(prisma);
+  userlist = JSON.parse(JSON.stringify(userlist));
 
   return {
     props: {
-      users,
+      userlist,
     },
   };
 }
