@@ -51,7 +51,7 @@ export default function PlocMonthly({ users }) {
                   placeholder="All Users"
                   onChange={(e) => {
                     setFilterSelect(e.target.value);
-                  }} 
+                  }}
                 />
                 <StackedButtonPrimary
                   href=""
@@ -161,7 +161,7 @@ export default function PlocMonthly({ users }) {
 
   async function handleSubmit() {
     fetch(
-      "/api/insights/plocmonthly?" +
+      "/api/insights/plocmonthlyscore?" +
         new URLSearchParams({
           filterselect: filterselect,
         }),
