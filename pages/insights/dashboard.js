@@ -48,7 +48,7 @@ const features = [
     name: "PLOC Monthly Scorecard",
     description: "View monthly PLOC scores.",
     icon: CalendarIcon,
-    href: "/insights/plocconversion",
+    href: "/insights/monthlyplocscore",
   },
 
   /*{
