@@ -51,7 +51,7 @@ export default function PlocMonthly({ users }) {
                   placeholder="All Users"
                   onChange={(e) => {
                     setFilterSelect(e.target.value);
-                  }}
+                  }} 
                 />
                 <StackedButtonPrimary
                   href=""
