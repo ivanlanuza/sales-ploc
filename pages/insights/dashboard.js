@@ -27,6 +27,12 @@ const features = [
     href: "/company/list",
   },
   {
+    name: "PLOC Monthly Scorecard",
+    description: "View monthly PLOC scores.",
+    icon: CalendarIcon,
+    href: "/insights/monthlyplocscore",
+  },
+  {
     name: "PLOC Current Snapshot",
     description: "View the current PLOC pipeline.",
     icon: OfficeBuildingIcon,
@@ -43,12 +49,6 @@ const features = [
     description: "View conversion and closure rates.",
     icon: ClipboardListIcon,
     href: "/insights/plocconversion",
-  },
-  {
-    name: "PLOC Monthly Scorecard",
-    description: "View monthly PLOC scores.",
-    icon: CalendarIcon,
-    href: "/insights/monthlyplocscore",
   },
 
   /*{
