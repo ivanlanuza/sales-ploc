@@ -12,6 +12,10 @@ import StackedSelectLabel from "components/core/StackedSelectLabel";
 import StackedButtonPrimary from "components/core/StackedButtonPrimary";
 import CardHeader from "components/core/CardHeader";
 import Datalist from "components/historicalploclist";
+import StackedDatePickerLabel from "components/core/StackedDatePickerLabel";
+import TableHeaderPLOCLarge from "components/core/TableHeaderPLOCLarge";
+import TableHeaderPLOCSmall from "components/core/TableHeaderPLOCSmall";
+import TableFooterPLOC from "components/core/TableFooterPLOC";
 
 export default function PlocMonthlyScorecard({ userlist }) {
   const { data: session, status } = useSession();
@@ -23,6 +27,10 @@ export default function PlocMonthlyScorecard({ userlist }) {
   const [filterselect, setFilterSelect] = useState("");
   const [filterlist, setFilterList] = useState(userlist);
   const [scorecard, setScorecard] = useState("");
+  const startofYear = new Date().getFullYear();
+
+  const [fromDate, setFromDate] = useState(new Date(startofYear, 0, 1));
+  const [toDate, setToDate] = useState(new Date());
 
   if (!session) {
     return <div className="text-center pt-8">Not logged in</div>;
@@ -55,6 +63,16 @@ export default function PlocMonthlyScorecard({ userlist }) {
                     setFilterSelect(e.target.value);
                   }}
                 />
+                <StackedDatePickerLabel
+                  selected={fromDate}
+                  onChange={(date) => setFromDate(date)}
+                  label="From Date"
+                />
+                <StackedDatePickerLabel
+                  selected={toDate}
+                  onChange={(date) => setToDate(date)}
+                  label="To Date"
+                />
                 <StackedButtonPrimary
                   href=""
                   title="Filter"
@@ -76,32 +94,7 @@ export default function PlocMonthlyScorecard({ userlist }) {
 
                 {scorecard.length != 0 && (
                   <table className="hidden lg:block w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead className="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                      <tr>
-                        <th scope="col" className="px-6 py-3"></th>
-                        <th scope="col" className="px-6 py-3 text-center">
-                          Prospect
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-center">
-                          Leads{" "}
-                          <span className="text-xs text-gray-400 font-light">
-                            (Conv. %)
-                          </span>
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-center">
-                          Opportunity{" "}
-                          <span className="text-xs text-gray-400 font-light">
-                            (Conv. %)
-                          </span>
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-center">
-                          Client{" "}
-                          <span className="text-xs text-gray-400 font-light">
-                            (Closure %)
-                          </span>
-                        </th>
-                      </tr>
-                    </thead>
+                    <TableHeaderPLOCLarge />
                     <tbody>
                       <Datalist
                         datalist={scorecard}
@@ -109,29 +102,14 @@ export default function PlocMonthlyScorecard({ userlist }) {
                         setOpen={setOpen}
                         setCompanyList={setCompanyList}
                       />
+                      <TableFooterPLOC datalist={scorecard} />
                     </tbody>
                   </table>
                 )}
 
                 {scorecard.length != 0 && (
-                  <table className="block lg:hidden w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead className="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                      <tr>
-                        <th scope="col" className="px-6 py-3"></th>
-                        <th scope="col" className="px-6 py-3 text-center">
-                          P
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-center">
-                          L
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-center">
-                          O
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-center">
-                          C
-                        </th>
-                      </tr>
-                    </thead>
+                  <table className="block table-fixed lg:hidden w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <TableHeaderPLOCSmall />
                     <tbody>
                       <Datalist
                         datalist={scorecard}
@@ -139,6 +117,7 @@ export default function PlocMonthlyScorecard({ userlist }) {
                         setOpen={setOpen}
                         setCompanyList={setCompanyList}
                       />
+                      <TableFooterPLOC datalist={scorecard} />
                     </tbody>
                   </table>
                 )}
@@ -162,22 +141,26 @@ export default function PlocMonthlyScorecard({ userlist }) {
   }
 
   async function handleSubmit() {
-    fetch(
-      "/api/insights/plocmonthlyscore?" +
-        new URLSearchParams({
-          filterselect: filterselect,
-        }),
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "GET",
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setScorecard(data);
-      });
+    if (fromDate && toDate) {
+      fetch(
+        "/api/insights/plocmonthlyscore?" +
+          new URLSearchParams({
+            filterselect: filterselect,
+            fromDate: fromDate,
+            toDate: toDate,
+          }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          method: "GET",
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setScorecard(data);
+        });
+    }
   }
 }
 

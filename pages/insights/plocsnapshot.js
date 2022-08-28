@@ -8,6 +8,7 @@ import StackedSelectLabel from "components/core/StackedSelectLabel";
 import StackedButtonPrimary from "components/core/StackedButtonPrimary";
 import CardHeader from "components/core/CardHeader";
 import Datalist from "components/ploclist";
+import TableFooterPLOC from "components/core/TableFooterPLOC";
 
 const features = [
   {
@@ -113,6 +114,7 @@ export default function CompanyList({}) {
                         setOpen={setOpen}
                         setCompanyList={setCompanyList}
                       />
+                      <TableFooterPLOC datalist={scorecard} />
                     </tbody>
                   </table>
                 )}
@@ -143,6 +145,7 @@ export default function CompanyList({}) {
                         setOpen={setOpen}
                         setCompanyList={setCompanyList}
                       />
+                      <TableFooterPLOC datalist={scorecard} />
                     </tbody>
                   </table>
                 )}
