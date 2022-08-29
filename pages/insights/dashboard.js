@@ -17,40 +17,49 @@ import {
   TemplateIcon,
   SearchCircleIcon,
   ClipboardListIcon,
+  ChartPieIcon,
+  FireIcon,
+  LightBulbIcon,
+  ChartBarIcon,
 } from "@heroicons/react/outline";
 
 const features = [
   {
-    name: "Company Directory",
+    name: "Recommended Actions",
+    description: "Get ideas on what to do next",
+    icon: LightBulbIcon,
+    href: "/insights/recoactions",
+  },
+  {
+    name: "Current PLOC Snapshot",
+    description: "View the current PLOC pipeline.",
+    icon: FireIcon,
+    href: "/insights/plocsnapshot",
+  },
+  {
+    name: "Full Company Directory",
     description: "Display all companies in the database.",
     icon: ClipboardListIcon,
     href: "/company/list",
   },
   {
-    name: "PLOC Monthly Scorecard",
+    name: "Monthly Scorecard",
     description: "View monthly PLOC scores.",
     icon: CalendarIcon,
     href: "/insights/monthlyplocscore",
   },
   {
-    name: "PLOC Current Snapshot",
-    description: "View the current PLOC pipeline.",
-    icon: OfficeBuildingIcon,
-    href: "/insights/plocsnapshot",
-  },
-  {
-    name: "Historical PLOC by Source",
-    description: "Know the sources that drive most return.",
-    icon: SearchCircleIcon,
-    href: "/insights/plocbysource",
-  },
-  {
-    name: "Historical PLOC Conversion Rates",
+    name: "All-time PLOC Conversion",
     description: "View conversion and closure rates.",
-    icon: ClipboardListIcon,
+    icon: ChartBarIcon,
     href: "/insights/plocconversion",
   },
-
+  {
+    name: "All-time PLOC by Source",
+    description: "Know the sources that drive most return.",
+    icon: ChartPieIcon,
+    href: "/insights/plocbysource",
+  },
   /*{
     name: "[SOON!] Timeline Update",
     description: "Review activity details per day.",
