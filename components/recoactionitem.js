@@ -43,15 +43,19 @@ const RecoActionItem = ({ recoaction, status }) => {
           </Link>
         </div>
       </td>
-      <td className="text-xs text-left">{recoaction.code}</td>
-      <td className="text-xs text-left">
+      <td className="text-xs text-left hidden xl:table-cell">
+        {recoaction.code}
+      </td>
+      <td className="text-xs text-left hidden xl:table-cell">
         {timeago.format(new Date(recoaction.opp_date))}
       </td>
       <td className="text-xs text-left">
         {timeago.format(new Date(recoaction.last_contact))}
       </td>
-      <td className="text-xs text-left">{recoaction.interactions - 2}</td>
-      <td className="text-xs text-left">{recotext}</td>
+      <td className="text-xs text-left hidden xl:table-cell">
+        {recoaction.interactions - 2}
+      </td>
+      <td className="text-xs text-left table-cell">{recotext}</td>
     </tr>
   );
 };

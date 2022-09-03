@@ -11,11 +11,11 @@ const Company = ({ company }) => {
         </Link>
       </td>
       <td className="px-6 py-4">{company.status.name}</td>
-      <td className="hidden lg:block px-6 py-0">{company.segment.code}</td>
-      <td className="hidden lg:block  px-6 py-0">
+      <td className="hidden xl:table-cell px-6 py-0">{company.segment.code}</td>
+      <td className="hidden xl:table-cell  px-6 py-0">
         {company.businesstype.name}
       </td>
-      <td className="hidden lg:block  px-6 py-0">{company.source.name}</td>
+      <td className="hidden xl:table-cell  px-6 py-0">{company.source.name}</td>
     </tr>
   );
 };

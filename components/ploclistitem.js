@@ -44,8 +44,10 @@ const Data = ({
 
   return (
     <tr className="bg-white border-t dark:bg-gray-800 dark:border-gray-700 text-xs font-sans">
-      <td className="px-6 py-4">{data.name}</td>
-      <td className="px-6 py-4 text-center">
+      <td className="px-0 lg:px-6 py-4 text-xs lg:text-sm">
+        <span className="px-0 lg:pl-6">{data.name}</span>
+      </td>
+      <td className="px-0 lg:px-6 py-4 text-center">
         <span
           onClick={() =>
             getCompany(
@@ -57,14 +59,14 @@ const Data = ({
               groupbyFilter
             )
           }
-          className={`text-sm ${
+          className={`text-xs lg:text-sm ${
             data.PROSPECT ? "text-purple-600 font-bold " : ""
           }`}
         >
           {data.PROSPECT ? data.PROSPECT : 0}
         </span>
       </td>
-      <td className="px-6 py-4 text-center">
+      <td className="px-0 lg:px-6 py-4 text-center">
         <span
           onClick={() =>
             getCompany(
@@ -76,12 +78,14 @@ const Data = ({
               groupbyFilter
             )
           }
-          className={`text-sm ${data.LEAD ? "text-purple-600 font-bold " : ""}`}
+          className={`text-xs lg:text-sm ${
+            data.LEAD ? "text-purple-600 font-bold " : ""
+          }`}
         >
           {data.LEAD ? data.LEAD : 0}
         </span>
       </td>
-      <td className="px-6 py-4 text-center">
+      <td className="px-2 lg:px-6 py-4 text-center">
         <span
           onClick={() =>
             getCompany(
@@ -100,7 +104,7 @@ const Data = ({
           {data.OPPORTUNITY ? data.OPPORTUNITY : 0}
         </span>
       </td>
-      <td className="px-6 py-4 text-center">
+      <td className="px-2 lg:px-6 py-4 text-center">
         <span
           onClick={() =>
             getCompany(
@@ -112,7 +116,7 @@ const Data = ({
               groupbyFilter
             )
           }
-          className={`text-sm ${
+          className={`text-xs lg:text-sm ${
             data.CLIENT ? "text-purple-600 font-bold " : ""
           }`}
         >

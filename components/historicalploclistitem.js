@@ -34,8 +34,8 @@ const Data = ({
 
   return (
     <tr className="bg-white border-t dark:bg-gray-800 dark:border-gray-700 border-dotted text-xs font-sans">
-      <td className="px-6 py-4">{data.name}</td>
-      <td className="px-6 py-4 text-center">
+      <td className="px-0 lg:px-6 py-4">{data.name}</td>
+      <td className="px-0 lg:px-6 py-4 text-center">
         <span
           onClick={() => getCompany("01", data.id, groupbyFilter)}
           className={`text-sm ${
@@ -45,7 +45,7 @@ const Data = ({
           {data.PROSPECT ? data.PROSPECT : 0}
         </span>
       </td>
-      <td className="px-6 py-4 text-center">
+      <td className="px-0 lg:px-6 py-4 text-center">
         <span
           onClick={() => getCompany("02", data.id, groupbyFilter)}
           className={`text-sm ${data.LEAD ? "text-purple-600 font-bold " : ""}`}
@@ -63,7 +63,7 @@ const Data = ({
             : ""}
         </span>
       </td>
-      <td className="px-6 py-4 text-center">
+      <td className="px-0 lg:px-6 py-4 text-center">
         <span
           onClick={() => getCompany("03", data.id, groupbyFilter)}
           className={`text-sm ${
@@ -83,7 +83,7 @@ const Data = ({
             : ""}
         </span>
       </td>
-      <td className="px-6 py-4 text-center">
+      <td className="px-0 lg:px-6 py-4 text-center">
         <span
           onClick={() => getCompany("04", data.id, groupbyFilter)}
           className={`text-sm ${

@@ -38,8 +38,8 @@ export default function CompanyList({ segment, source, bt, statuslist }) {
         <div>
           <HeaderBar email={session.user.email} image={session.user.image} />
         </div>
-        <div className="md:flex p-4 ">
-          <div className="">
+        <div className="lg:flex p-4 ">
+          <div className="w-full xl:w-2/6">
             <div className="block bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
               <CardHeader
                 title="Filters"
@@ -129,8 +129,23 @@ export default function CompanyList({ segment, source, bt, statuslist }) {
                         <th scope="col" className="px-6 py-3">
                           Status
                         </th>
-                        <th scope="col" className="hidden lg:block px-6 py-3">
-                          Details
+                        <th
+                          scope="col"
+                          className="hidden xl:table-cell px-6 py-3"
+                        >
+                          Segment
+                        </th>
+                        <th
+                          scope="col"
+                          className="hidden xl:table-cell px-6 py-3"
+                        >
+                          Type
+                        </th>
+                        <th
+                          scope="col"
+                          className="hidden xl:table-cell px-6 py-3"
+                        >
+                          Source
                         </th>
                       </tr>
                     </thead>

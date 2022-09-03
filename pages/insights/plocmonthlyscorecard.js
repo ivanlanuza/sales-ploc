@@ -73,7 +73,7 @@ export default function PlocMonthlyScorecard({ users }) {
                 />
 
                 {scorecard.length != 0 && (
-                  <table className="hidden lg:block w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                  <table className="px-2 hidden lg:block w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                       <tr>
                         <th scope="col" className="px-6 py-3"></th>
@@ -112,7 +112,7 @@ export default function PlocMonthlyScorecard({ users }) {
                 )}
 
                 {scorecard.length != 0 && (
-                  <table className="block lg:hidden w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                  <table className="px-2 block lg:hidden w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                       <tr>
                         <th scope="col" className="px-6 py-3"></th>

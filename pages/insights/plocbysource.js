@@ -38,7 +38,7 @@ export default function CompanyList({ segment, bt }) {
         <div>
           <HeaderBar email={session.user.email} image={session.user.image} />
         </div>
-        <div className="md:flex p-4 ">
+        <div className="lg:flex p-4 ">
           <div className="w-full xl:w-2/6">
             <div className="block bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
               <CardHeader
@@ -91,7 +91,7 @@ export default function CompanyList({ segment, bt }) {
                 />
 
                 {scorecard.length != 0 && (
-                  <table className="hidden lg:block w-full font-sans text-sm text-left text-gray-500 dark:text-gray-400">
+                  <table className="px-2 hidden lg:block w-full font-sans text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-sm w-full text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                       <tr>
                         <th scope="col" className="px-6 py-3"></th>
@@ -124,7 +124,7 @@ export default function CompanyList({ segment, bt }) {
                 )}
 
                 {scorecard.length != 0 && (
-                  <table className="block lg:hidden w-3/5 text-sm text-left text-gray-500 dark:text-gray-400">
+                  <table className="px-2 lg:px-0 block lg:hidden w-full  text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                       <tr>
                         <th scope="col" className="px-6 py-3"></th>

@@ -50,7 +50,7 @@ export default function PlocMonthlyScorecard({ userlist }) {
         <div>
           <HeaderBar email={session.user.email} image={session.user.image} />
         </div>
-        <div className="md:flex p-4 ">
+        <div className="lg:flex p-4 ">
           <div className="w-full xl:w-2/6">
             <div className="block bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
               <CardHeader
@@ -97,7 +97,7 @@ export default function PlocMonthlyScorecard({ userlist }) {
                   {loading}
                 </span>
                 {datatable.length != 0 && (
-                  <table className="hidden lg:block w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                  <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <RecoActionsTableHeader
                       tablestatus={submittedstatusselect}
                     />
