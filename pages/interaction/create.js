@@ -191,7 +191,7 @@ export default function Entry({ companies }) {
         actionDate.getFullYear(),
         actionDate.getMonth(),
         actionDate.getDate()
-      ).toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
+      );
 
       await fetch("/api/interactioncreate", {
         body: JSON.stringify({

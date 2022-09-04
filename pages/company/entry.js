@@ -179,7 +179,7 @@ export default function CompanyPage({ segment, source, bt }) {
         actionDate.getFullYear(),
         actionDate.getMonth(),
         actionDate.getDate()
-      ).toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
+      );
       await fetch("/api/company", {
         body: JSON.stringify({
           companyName,
