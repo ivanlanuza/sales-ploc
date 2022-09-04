@@ -180,6 +180,8 @@ export default function CompanyPage({ segment, source, bt }) {
         actionDate.getMonth(),
         actionDate.getDate()
       );
+      console.log("notime: " + notime_actionDate);
+      console.log("actionDate: " + actionDate);
       await fetch("/api/company", {
         body: JSON.stringify({
           companyName,
