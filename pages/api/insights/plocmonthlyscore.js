@@ -31,8 +31,8 @@ export default async function handler(req, res) {
   //console.log(mytodate);
   if (req.method === "GET" && myfilter === "") {
     const orig = await prisma.$queryRaw`SELECT 
-    DATE_FORMAT(Action.businessDate, "%Y-%M") AS yearmonth,
-    DATE_FORMAT(Action.businessDate, "%Y-%m") AS yearmonthid,
+    DATE_FORMAT(CONVERT_TZ(Action.businessDate, '+00:00', '+08:00'), "%Y-%M") AS yearmonth,
+    DATE_FORMAT(CONVERT_TZ(Action.businessDate, '+00:00', '+08:00'), "%Y-%m") AS yearmonthid,
     ActionType.code as status_name,
     CAST(COUNT(DISTINCT Action.companyId) AS CHAR) as count 
     FROM Company
@@ -41,9 +41,10 @@ export default async function handler(req, res) {
     WHERE isActive = true 
     AND actiontypeId IN ('01','02','03','04')
     AND businessDate BETWEEN ${myfromdate} AND ${mytodate}
-    GROUP BY actiontypeId, ActionType.code, MONTH(Action.businessDate), YEAR(Action.businessDate)
-    ORDER BY YEAR(Action.businessDate), MONTH(Action.businessDate), actiontypeId`;
+    GROUP BY actiontypeId, ActionType.code, MONTH(CONVERT_TZ(Action.businessDate, '+00:00', '+08:00')), YEAR(CONVERT_TZ(Action.businessDate, '+00:00', '+08:00'))
+    ORDER BY YEAR(CONVERT_TZ(Action.businessDate, '+00:00', '+08:00')), MONTH(CONVERT_TZ(Action.businessDate, '+00:00', '+08:00')), actiontypeId`;
 
+    //console.log(orig);
     var a = [];
     if (orig.length != 0) {
       var name = "";
@@ -69,8 +70,8 @@ export default async function handler(req, res) {
 
   if (req.method === "GET" && myfilter != "") {
     const orig = await prisma.$queryRaw`SELECT 
-    DATE_FORMAT(Action.businessDate, "%Y-%M") AS yearmonth,
-    DATE_FORMAT(Action.businessDate, "%Y-%m") AS yearmonthid,
+    DATE_FORMAT(CONVERT_TZ(Action.businessDate, '+00:00', '+08:00'), "%Y-%M") AS yearmonth,
+    DATE_FORMAT(CONVERT_TZ(Action.businessDate, '+00:00', '+08:00'), "%Y-%m") AS yearmonthid,
     ActionType.code as status_name,
     CAST(COUNT(DISTINCT Action.companyId) AS CHAR) as count 
     FROM Company
@@ -81,8 +82,8 @@ export default async function handler(req, res) {
     AND actiontypeId IN ('01','02','03','04')
     AND User.id = ${req.query.filterselect}
     AND businessDate BETWEEN ${myfromdate} AND ${mytodate}
-    GROUP BY actiontypeId, ActionType.code, MONTH(Action.businessDate), YEAR(Action.businessDate)
-    ORDER BY YEAR(Action.businessDate), MONTH(Action.businessDate), actiontypeId`;
+    GROUP BY actiontypeId, ActionType.code, MONTH(CONVERT_TZ(Action.businessDate, '+00:00', '+08:00')), YEAR(CONVERT_TZ(Action.businessDate, '+00:00', '+08:00'))
+    ORDER BY YEAR(CONVERT_TZ(Action.businessDate, '+00:00', '+08:00')), MONTH(CONVERT_TZ(Action.businessDate, '+00:00', '+08:00')), actiontypeId`;
 
     var a = [];
     if (orig.length != 0) {

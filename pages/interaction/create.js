@@ -192,8 +192,6 @@ export default function Entry({ companies }) {
         actionDate.getMonth(),
         actionDate.getDate()
       );
-      console.log("notime: " + notime_actionDate);
-      console.log("actionDate: " + actionDate);
 
       await fetch("/api/interactioncreate", {
         body: JSON.stringify({

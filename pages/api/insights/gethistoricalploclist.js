@@ -81,8 +81,12 @@ export default async function handler(req, res) {
         INNER JOIN Action ON Company.id = Action.companyId
         WHERE Company.isActive = true 
         AND Action.actiontypeId = ${req.query.actiontypeId}
-        AND MONTH(Action.businessDate) = ${req.query.id.split("-")[1]}
-        AND YEAR(Action.businessDate) = ${req.query.id.split("-")[0]}
+        AND MONTH(CONVERT_TZ(Action.businessDate, '+00:00', '+08:00')) = ${
+          req.query.id.split("-")[1]
+        }
+        AND YEAR(CONVERT_TZ(Action.businessDate, '+00:00', '+08:00')) = ${
+          req.query.id.split("-")[0]
+        }
         ORDER BY Company.name`;
 
       res.status(200).json(data);
@@ -96,8 +100,12 @@ export default async function handler(req, res) {
         WHERE Company.isActive = true 
         AND Action.actiontypeId = ${req.query.actiontypeId}
         AND Company.userId = ${req.query.groupbyfilter}
-        AND MONTH(Action.businessDate) = ${req.query.id.split("-")[1]}
-        AND YEAR(Action.businessDate) = ${req.query.id.split("-")[0]}
+        AND MONTH(CONVERT_TZ(Action.businessDate, '+00:00', '+08:00')) = ${
+          req.query.id.split("-")[1]
+        }
+        AND YEAR(CONVERT_TZ(Action.businessDate, '+00:00', '+08:00')) = ${
+          req.query.id.split("-")[0]
+        }
         ORDER BY Company.name`;
 
       res.status(200).json(data);
