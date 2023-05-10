@@ -36,6 +36,7 @@ export default async function handler(req, res) {
         source: true,
         businesstype: true,
         status: true,
+        user: true,
       },
       take: req.query.take ? parseInt(req.query.take) : undefined,
     });

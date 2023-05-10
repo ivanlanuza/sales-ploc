@@ -139,7 +139,7 @@ export default function CompanyList({ segment, source, bt, statuslist }) {
                           scope="col"
                           className="hidden xl:table-cell px-6 py-3"
                         >
-                          Type
+                          Owner
                         </th>
                         <th
                           scope="col"
